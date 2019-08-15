@@ -16,16 +16,7 @@ theme: 'mkdocs'
 # define pages
 pages:
     - Home: 'index.md'
-#    - Input Format: 'input_format.md'
-#    - Estimation:
-#        - 'Local SNP-heritability': 'local_hsqg.md'
-#        - 'Local genetic covariance (correlation)': 'local_rhog.md'
-#    - Analysis:
-#        - 'Visualizing local estimates': 'viz.md'
-#        - 'Contrast polygenicity': 'contrast_polygenicity.md'
-#        - 'Infer putative causality': 'infer_causality.md'
     - FAQ: 'faq.md'
-
 
 # Options
 extra:
@@ -52,8 +43,8 @@ google_analytics:
 markdown_extensions:
   - mdx_math
   - admonition
-  - codehilite(guess_lang=false)
-  - toc(permalink=true)
+  - codehilite
+  - toc
 
 extra_javascript:
   - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML

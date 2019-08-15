@@ -1,0 +1,24 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "X-LDSC", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#x-ldsc", 
+            "text": "", 
+            "title": "X-LDSC"
+        }, 
+        {
+            "location": "/faq/", 
+            "text": "Frequently asked questions", 
+            "title": "FAQ"
+        }, 
+        {
+            "location": "/faq/#frequently-asked-questions", 
+            "text": "", 
+            "title": "Frequently asked questions"
+        }
+    ]
+}
