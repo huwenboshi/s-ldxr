@@ -1,0 +1,60 @@
+# Project information
+site_name: 'X-LDSC'
+site_description: 'Stratifying squared trans-ethnic genetic correlation'
+site_author: 'Huwenbo Shi'
+site_url: 'https://huwenboshi.github.io/x-ldsc'
+
+# Repository
+repo_url: 'https://github.com/huwenboshi/x-ldsc'
+
+# Copyright
+copyright: 'Copyright &copy; 2019 - 2024 Huwenbo Shi'
+
+# Documentation and theme
+theme: 'mkdocs'
+
+# define pages
+pages:
+    - Home: 'index.md'
+#    - Input Format: 'input_format.md'
+#    - Estimation:
+#        - 'Local SNP-heritability': 'local_hsqg.md'
+#        - 'Local genetic covariance (correlation)': 'local_rhog.md'
+#    - Analysis:
+#        - 'Visualizing local estimates': 'viz.md'
+#        - 'Contrast polygenicity': 'contrast_polygenicity.md'
+#        - 'Infer putative causality': 'infer_causality.md'
+    - FAQ: 'faq.md'
+
+
+# Options
+extra:
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  social:
+    - type: 'github'
+      link: 'https://github.com/huwenboshi'
+    - type: 'twitter'
+      link: 'https://twitter.com/shihuwenbo'
+    - type: 'linkedin'
+      link: 'https://linkedin.com/in/john-doe'
+
+# Google Analytics
+google_analytics:
+  - 'UA-XXXXXXXX-X'
+  - 'auto'
+
+# Extensions
+markdown_extensions:
+  - mdx_math
+  - admonition
+  - codehilite(guess_lang=false)
+  - toc(permalink=true)
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML
+  - assets/mathjaxhelper.js
