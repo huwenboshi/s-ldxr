@@ -115,8 +115,9 @@ def get_ldscore_mat_allelic(ld1, n1, maf1, sigmasq1, ld2, n2, maf2,
     n1,n2 = np.float32(n1),np.float32(n2)
     sigmasq1_sub = sigmasq1[start:stop]
     sigmasq2_sub = sigmasq2[start:stop]
-    ld1_sq -= np.outer(sigmasq1_sub, sigmasq1) / np.float32(n1)
-    ld2_sq -= np.outer(sigmasq2_sub, sigmasq2) / np.float32(n2)
+    ld1_sq -= np.outer(sigmasq1_sub, sigmasq1) / np.float32(n1-1.0)
+    ld2_sq -= np.outer(sigmasq2_sub, sigmasq2) / np.float32(n2-1.0)
+    ld1_sq *= n1/(n1-1.0); ld2_sq *= n2/(n2-1.0)
 
     # zero out entries involving snps with maf less than maf_thres
     ld1_sq[maf1[start:stop]<=maf_thres,:] = 0.0
@@ -128,8 +129,10 @@ def get_ldscore_mat_allelic(ld1, n1, maf1, sigmasq1, ld2, n2, maf2,
     ld1_ld2[:,(maf1<=maf_thres)|(maf2<maf_thres)] = 0.0
 
     # fill diagonal with sigmasq
-    np.fill_diagonal(ld1_sq[:,start:stop], (n1-1.0)/n1*np.square(sigmasq1_sub))
-    np.fill_diagonal(ld2_sq[:,start:stop], (n2-1.0)/n2*np.square(sigmasq2_sub))
+    np.fill_diagonal(ld1_sq[:,start:stop],
+        (n1-1.0)/(n1+1.0)*np.square(sigmasq1_sub))
+    np.fill_diagonal(ld2_sq[:,start:stop],
+        (n2-1.0)/(n2+1.0)*np.square(sigmasq2_sub))
     np.fill_diagonal(ld1_ld2[:,start:stop], sigmasq1_sub*sigmasq2_sub)
 
     # divide by sigmasq
