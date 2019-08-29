@@ -5,8 +5,9 @@ by genomic annotations from GWAS summary statistics. Please see
 [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://huwenboshi.github.io/x-ldsc)
 for details.
 
-<span style="color:red">This software package does not welcome usage by racists!!</span>
-<span style="color:red">This software package should never be used to promote racial discrimination!!</span>
+<span style="color:red">**This software package does not welcome usage by racists!!**</span>
+
+<span style="color:red">**This software package should never be used to promote racial discrimination!!**</span>
 
 ---
 
