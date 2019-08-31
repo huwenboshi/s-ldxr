@@ -110,6 +110,7 @@
         <li class="main active"><a href="#estimating-stratified-squared-trans-ethnic-genetic-correlation-and-its">Estimating stratified squared trans-ethnic genetic correlation and its</a></li>
             <li><a href="#the-command">The command</a></li>
             <li><a href="#the-output">The output</a></li>
+            <li><a href="#interpreting-the-output">Interpreting the output</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -207,7 +208,41 @@ coefficients for population 2.</p>
 <div style="background-color:rgba(230, 230, 250, 1.0);">
 <b>Note</b>: The pseudo coefficients will only be saved if the
 --save-pseudo-coef flag is specified.
-</div></div>
+</div>
+
+<h3 id="interpreting-the-output">Interpreting the output</h3>
+<p>The output files of X-LDSC contain the following columns.
+1. <code>ANNOT</code> name of the annotation
+2. <code>NSNP</code> number of SNPs for binary annotations (sum of annotation values for
+continuous-valued annotations)
+3. <code>STD</code> standard deviation of the annotation across SNPs
+4. <code>TAU1</code> heritability coefficient of population 1
+5. <code>TAU1_SE</code> standard error heritability coefficient of population 1
+6. <code>TAU2</code> heritability coefficient of population 2
+7. <code>TAU2_SE</code> standard error heritability coefficient of population 2
+8. <code>THETA</code> trans-ethnic genetic covariance coefficient
+9. <code>THETA_SE</code> standard error of trans-ethnic genetic covariance coefficient
+10. <code>HSQ1</code> heritability in population 1
+11. <code>HSQ1_SE</code> standard error of heritability in population 1
+12. <code>HSQ2</code> heritability in population 2
+13. <code>HSQ2_SE</code> standard error of heritability in population 2
+14. <code>GCOV</code> trans-ethnic genetic covariance
+15. <code>GCOV_SE</code> standard error of trans-ethnic genetic covariance
+16. <code>GCORSQ</code> stratified squared trans-ethnic genetic correlation
+17. <code>GCORSQ_SE</code> standard error of stratified squared trans-ethnic genetic
+correlation 
+18. <code>HSQ1_ENRICHMENT</code> heritability enrichment in population 1
+19. <code>HSQ1_ENRICHMENT_SE</code> standard error of heritability enrichment in
+population 1
+20. <code>HSQ2_ENRICHMENT</code> heritability enrichment in population 2
+21. <code>HSQ2_ENRICHMENT_SE</code> standard error of heritability enrichment in
+population 2
+22. <code>GCOV_ENRICHMENT</code> genetic covariance enrichment
+23. <code>GCOV_ENRICHMENT_SE</code> standard error of genetic covariance enrichment
+24. <code>GCORSQ_ENRICHMENT</code> estimated enrichment of stratified squared trans-ethnic
+genetic correlation enrichment
+25. <code>GCORSQ_ENRICHMENT_SE</code> standard error of estimated enrichment of stratified
+squared trans-ethnic genetic correlation</p></div>
         </div>
 
         <footer class="col-md-12">
