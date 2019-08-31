@@ -97,14 +97,19 @@
         <li class="main active"><a href="#input-format">Input Format</a></li>
             <li><a href="#gwas-summary-statistics-data">GWAS summary statistics data</a></li>
             <li><a href="#reference-panel">Reference panel</a></li>
+            <li><a href="#annotation-files">Annotation files</a></li>
+            <li><a href="#ld-score-files">LD score files</a></li>
+            <li><a href="#minor-allele-frequency-files">Minor allele frequency files</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
 <h1 id="input-format">Input Format</h1>
-<p>This page describes the format of the GWAS summary statistics data (specified
-using the <code>--gcor</code> flag) andthe reference panel required by X-LDSC (specified
-using the <code>--bfile</code> format).</p>
+<p>This page describes the format of GWAS summary statistics data (specified
+by the <code>--gcor</code> flag), reference panel (specified by the <code>--bfile</code> flag),
+annotation files (specified by the <code>--annot</code> flag), LD score files (
+specified by the <code>--ref-ld-chr</code> flag), and minor allele frequency files (
+specified by the <code>--frqfile</code> flag).</p>
 <h2 id="gwas-summary-statistics-data">GWAS summary statistics data</h2>
 <p>GWAS summary statistics data should be in plain text or gzipped text format
 containing the following columns:</p>
@@ -135,8 +140,41 @@ duplicate ID or position will be removed before any analysis. )
 </ul>
 <div style="background-color:rgba(230, 230, 250, 1.0);">
 ( <b>Note</b>: X-LDSC requires the centimorgan information of each SNP to
-accurate estimation of LD scores. )
-</div></div>
+accurate estimation of LD scores.)
+</div>
+
+<h2 id="annotation-files">Annotation files</h2>
+<p>Annotation files should be in gzipped text format. The first 4 columns should
+always be:</p>
+<ul>
+<li>CHR - Chromosome number of the SNP.</li>
+<li>BP - Base pair position of the SNP.</li>
+<li>SNP - rs ID of the SNP (e.g. rs19800731).</li>
+<li>CM - Position of the SNP in centimogan.</li>
+</ul>
+<p>The first annotation (usually the base annotation) should start on the 5th
+column.</p>
+<h2 id="ld-score-files">LD score files</h2>
+<p>LD score files should be in gzipped text format. The first 3 columns should
+always be:</p>
+<ul>
+<li>CHR - Chromosome number of the SNP.</li>
+<li>SNP - rs ID of the SNP (e.g. rs19790919).</li>
+<li>BP - Base pair position of the SNP.</li>
+</ul>
+<p>LD scores of the first annotation (usually the base annotation) should start
+on the 4th column.</p>
+<h2 id="minor-allele-frequency-files">Minor allele frequency files</h2>
+<p>Minor allele frequency files format is the same as that of PLINK. The columns
+are:</p>
+<ul>
+<li>CHR - Chromosome number of the SNP.</li>
+<li>SNP - rs ID of the SNP (e.g. rs19800301).</li>
+<li>A1 - Non-effect allele.</li>
+<li>A2 - Effect allele (encoded as 1 in PLINK bed file).</li>
+<li>MAF - Minor allele frequency</li>
+<li>NCHROBS - Number of samples times 2.</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
