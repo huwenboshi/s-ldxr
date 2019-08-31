@@ -6,8 +6,7 @@ by genomic annotations from GWAS summary statistics. Please see
 for details.
 
 ```diff
-- This software package does not welcome usage by racists.
-- This software package should never be used to promote racial discrimination.
+- We detest usage of our software or scientific outcome to promote racial discrimination.
 ```
 
 ---
