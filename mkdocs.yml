@@ -17,6 +17,9 @@ theme: 'mkdocs'
 pages:
     - Home: 'index.md'
     - Input Format: 'input_format.md'
+    - Estimation:
+        - 'LD score': 'ldscore.md'
+        - 'Squared trans-ethnic genetic correlation': 'gcorsq.md'
     - FAQ: 'faq.md'
 
 # Options
