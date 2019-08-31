@@ -1,5 +1,4 @@
-# Estimating stratified squared trans-ethnic genetic correlation and its
-enrichment
+# Estimating stratified squared trans-ethnic genetic correlation and its enrichment
 
 This page describes how to estimate stratified squared trans-ethnic genetic
 correlation, \\(r^2_{g}(C)\\), and its enrichment, \\(\lambda^2(C)\\).
@@ -80,6 +79,57 @@ coefficients for population 2.
 <b>Note</b>: The pseudo coefficients will only be saved if the
 --save-pseudo-coef flag is specified.
 </div>
+
+### Continuous-valued annotations
+
+The following command estimates enrichment of stratified squared trans-ethnic
+genetic correlation of quintiles of continuous-valued annotations.
+
+```
+python <software directory>/cont_annot_gcor.py \
+    --coef TRAIT_EAS_EUR.txt \
+    --frqfile <EAS MAF directory>/1000G.EAS. \
+              <EUR MAF directory>/1000G.EUR. \
+    --annot <baseline annotation directory>/baseline. \
+            <AVGLLD annotation directory>/avglld. \
+            <BSTAT annotation directory>/bstat. \
+            <ALLELEAGE annotation directory>/alleleage. \
+    --names AVGLLD BSTAT ALLELEAGE \
+    --nbins 5 \
+    --out TRAIT_EAS_EUR_contannot.txt
+```
+
+Here are the meanings of the flags.
+
+* `--coef` specifies the output from the previous step. The jackknife pseudo
+coefficients will be loaded automatically.
+
+* `--frqfile` specifies prefix of minor allele frequency files.
+
+* `--annot` specifies prefix of the annotation files. This flags also takes
+one or more arguments.
+
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: The order one specifies the annotation files must be the same as the
+order of annotations in TRAIT_EAS_EUR.txt.
+</div>
+
+* `--names` specifies the names of the continuous annotations for which one
+wishes to compute enrichment at quintiles.
+
+* `--nbins` specifies the number of bins to bin the SNPs based on the values
+of their continuous annotation. The default is 5 (i.e. quintiles).
+
+* `--out` specifies the output file name.
+
+Additionally, users may use the `--apply-shrinkage` flag to adjust the level
+of shrinkage.
+
+After executing the above command, 2 files will be created.
+
+* `TRAIT_EAS_EUR_contannot.txt` contains the estimates.
+
+* `TRAIT_EAS_EUR_contannot.txt.log` is the log file for debugging purpose.
 
 ### Interpreting the output
 
