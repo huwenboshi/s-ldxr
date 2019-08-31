@@ -108,8 +108,8 @@
 <p>This page describes the format of GWAS summary statistics data (specified
 by the <code>--gcor</code> flag), reference panel (specified by the <code>--bfile</code> flag),
 annotation files (specified by the <code>--annot</code> flag), LD score files (
-specified by the <code>--ref-ld-chr</code> flag), and minor allele frequency files (
-specified by the <code>--frqfile</code> flag).</p>
+specified by the <code>--ref-ld-chr</code> and <code>--w-ld-chr</code> flag), and minor allele
+frequency files (specified by the <code>--frqfile</code> flag).</p>
 <h2 id="gwas-summary-statistics-data">GWAS summary statistics data</h2>
 <p>GWAS summary statistics data should be in plain text or gzipped text format
 containing the following columns:</p>
@@ -123,11 +123,11 @@ containing the following columns:</p>
 <li>N - Sample size of the SNP.</li>
 </ul>
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-( <b>Note</b>:  This file format is compatible with <a href="https://github.com/bulik/ldsc">LDSC</a>.
-Other columns [e.g. MAF, INFO, etc.] may be included in the file, but will not
+<b>Note</b>:  This file format is compatible with <a href="https://github.com/bulik/ldsc">LDSC</a>.
+Other columns (e.g. MAF, INFO, etc.) may be included in the file, but will not
 be used. It is also recommended [although not required] that the summary data
 files are sorted by their chromosomes and base pairs. All SNPs with either
-duplicate ID or position will be removed before any analysis. )
+duplicate ID or position will be removed before any analysis.
 </div>
 
 <h2 id="reference-panel">Reference panel</h2>
@@ -139,8 +139,8 @@ duplicate ID or position will be removed before any analysis. )
 <li><a href="https://www.uk10k.org/data_access.html">UK10K</a></li>
 </ul>
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-( <b>Note</b>: X-LDSC requires the centimorgan information of each SNP to
-accurate estimation of LD scores.)
+<b>Note</b>: X-LDSC requires the centimorgan information of each SNP to
+accurate estimation of LD scores.
 </div>
 
 <h2 id="annotation-files">Annotation files</h2>
@@ -164,6 +164,11 @@ always be:</p>
 </ul>
 <p>LD scores of the first annotation (usually the base annotation) should start
 on the 4th column.</p>
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: The regression weight file (specified by the `--w-ld-chr` flag)
+has the same format as LD score files.
+</div>
+
 <h2 id="minor-allele-frequency-files">Minor allele frequency files</h2>
 <p>Minor allele frequency files format is the same as that of PLINK. The columns
 are:</p>
