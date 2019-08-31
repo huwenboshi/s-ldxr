@@ -68,7 +68,7 @@ LD scores of the first annotation (usually the base annotation) should start
 on the 4th column.
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-<b>Note</b>: The regression weight file (specified by the `--w-ld-chr` flag)
+<b>Note</b>: The regression weight file (specified by the --w-ld-chr flag)
 has the same format as LD score files.
 </div>
 
