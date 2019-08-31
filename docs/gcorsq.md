@@ -80,3 +80,38 @@ coefficients for population 2.
 <b>Note</b>: The pseudo coefficients will only be saved if the
 --save-pseudo-coef flag is specified.
 </div>
+
+### Interpreting the output
+
+The output files of X-LDSC contain the following columns.
+1. `ANNOT` name of the annotation
+2. `NSNP` number of SNPs for binary annotations (sum of annotation values for
+continuous-valued annotations)
+3. `STD` standard deviation of the annotation across SNPs
+4. `TAU1` heritability coefficient of population 1
+5. `TAU1_SE` standard error heritability coefficient of population 1
+6. `TAU2` heritability coefficient of population 2
+7. `TAU2_SE` standard error heritability coefficient of population 2
+8. `THETA` trans-ethnic genetic covariance coefficient
+9. `THETA_SE` standard error of trans-ethnic genetic covariance coefficient
+10. `HSQ1` heritability in population 1
+11. `HSQ1_SE` standard error of heritability in population 1
+12. `HSQ2` heritability in population 2
+13. `HSQ2_SE` standard error of heritability in population 2
+14. `GCOV` trans-ethnic genetic covariance
+15. `GCOV_SE` standard error of trans-ethnic genetic covariance
+16. `GCORSQ` stratified squared trans-ethnic genetic correlation
+17. `GCORSQ_SE` standard error of stratified squared trans-ethnic genetic
+correlation 
+18. `HSQ1_ENRICHMENT` heritability enrichment in population 1
+19. `HSQ1_ENRICHMENT_SE` standard error of heritability enrichment in
+population 1
+20. `HSQ2_ENRICHMENT` heritability enrichment in population 2
+21. `HSQ2_ENRICHMENT_SE` standard error of heritability enrichment in
+population 2
+22. `GCOV_ENRICHMENT` genetic covariance enrichment
+23. `GCOV_ENRICHMENT_SE` standard error of genetic covariance enrichment
+24. `GCORSQ_ENRICHMENT` estimated enrichment of stratified squared trans-ethnic
+genetic correlation enrichment
+25. `GCORSQ_ENRICHMENT_SE` standard error of estimated enrichment of stratified
+squared trans-ethnic genetic correlation

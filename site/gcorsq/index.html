@@ -109,6 +109,7 @@
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#estimating-stratified-squared-trans-ethnic-genetic-correlation-and-its">Estimating stratified squared trans-ethnic genetic correlation and its</a></li>
             <li><a href="#the-command">The command</a></li>
+            <li><a href="#the-output">The output</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -159,10 +160,16 @@ standardized LD scores calculated from regression SNPs.</p>
 </li>
 <li>
 <p><code>--annot</code> specifies prefix of the annotation files. This flags also takes
-one or more arguments. Note: the order one specifies the annotation files must
-be the same as the order one specifies the LD score files. The annotation
-files must also be the same files that one uses to obtain the LD scores.</p>
+one or more arguments.</p>
 </li>
+</ul>
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: The order one specifies the annotation files must
+be the same as the order one specifies the LD score files. The annotation
+files must also be the same files that one uses to obtain the LD scores.
+</div>
+
+<ul>
 <li>
 <p><code>--apply-shrinkage</code> adjusts the level of shrinkage (the \(\alpha\) tuning
 parameter in the paper). This should be a number between 0 and 1.</p>
@@ -174,7 +181,33 @@ the coefficients will be saved. This flag is optional.</p>
 <li>
 <p><code>--out</code> specifies the output file name.</p>
 </li>
-</ul></div>
+</ul>
+<h3 id="the-output">The output</h3>
+<p>After executing the above command, 5 files will be generated.</p>
+<ul>
+<li>
+<p><code>TRAIT_EAS_EUR.txt</code> output file containing the estimates.</p>
+</li>
+<li>
+<p><code>TRAIT_EAS_EUR.txt.log</code> log file containing information for debugging.</p>
+</li>
+<li>
+<p><code>TRAIT_EAS_EUR.txt.pseudo_tau1.gz</code> jackknife pseudo values for \(\tau_C\)
+coefficients for population 1.</p>
+</li>
+<li>
+<p><code>TRAIT_EAS_EUR.txt.pseudo_tau2.gz</code> jackknife pseudo values for \(\tau_C\)
+coefficients for population 2.</p>
+</li>
+<li>
+<p><code>TRAIT_EAS_EUR.txt.pseudo_theta.gz</code> jackknife pseudo values for
+\(\theta_C\) genetic covariance coefficients.</p>
+</li>
+</ul>
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: The pseudo coefficients will only be saved if the
+--save-pseudo-coef flag is specified.
+</div></div>
         </div>
 
         <footer class="col-md-12">
