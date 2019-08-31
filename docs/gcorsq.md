@@ -43,9 +43,13 @@ standardized LD scores calculated from regression SNPs.
 * `--frqfile` specifies prefix of minor allele frequency files.
 
 * `--annot` specifies prefix of the annotation files. This flags also takes
-one or more arguments. Note: the order one specifies the annotation files must
+one or more arguments.
+
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: The order one specifies the annotation files must
 be the same as the order one specifies the LD score files. The annotation
 files must also be the same files that one uses to obtain the LD scores.
+</div>
 
 * `--apply-shrinkage` adjusts the level of shrinkage (the \\(\alpha\\) tuning
 parameter in the paper). This should be a number between 0 and 1.
@@ -54,3 +58,25 @@ parameter in the paper). This should be a number between 0 and 1.
 the coefficients will be saved. This flag is optional.
 
 * `--out` specifies the output file name.
+
+### The output
+
+After executing the above command, 5 files will be generated.
+
+* `TRAIT_EAS_EUR.txt` output file containing the estimates.
+
+* `TRAIT_EAS_EUR.txt.log` log file containing information for debugging.
+
+* `TRAIT_EAS_EUR.txt.pseudo_tau1.gz` jackknife pseudo values for \\(\tau_C\\)
+coefficients for population 1.
+
+* `TRAIT_EAS_EUR.txt.pseudo_tau2.gz` jackknife pseudo values for \\(\tau_C\\)
+coefficients for population 2.
+
+* `TRAIT_EAS_EUR.txt.pseudo_theta.gz` jackknife pseudo values for
+\\(\theta_C\\) genetic covariance coefficients.
+
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: The pseudo coefficients will only be saved if the
+--save-pseudo-coef flag is specified.
+</div>

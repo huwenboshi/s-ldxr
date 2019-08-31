@@ -107,11 +107,74 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#estimating-stratified-squared-trans-ethnic-genetic-correlation-and-its">Estimating stratified squared trans-ethnic genetic correlation and its</a></li>
+            <li><a href="#the-command">The command</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-</div>
+<h1 id="estimating-stratified-squared-trans-ethnic-genetic-correlation-and-its">Estimating stratified squared trans-ethnic genetic correlation and its</h1>
+<p>enrichment</p>
+<p>This page describes how to estimate stratified squared trans-ethnic genetic
+correlation, \(r^2_{g}(C)\), and its enrichment, \(\lambda^2(C)\).</p>
+<h3 id="the-command">The command</h3>
+<p>X-LDSC estimates \(r^2_{g}(C)\) and \(\lambda^2(C)\) with the
+following command.</p>
+<div class="codehilite"><pre><span></span>python &lt;software directory&gt;/x-ldsc.py \
+    --gcor &lt;summary stats directory for EAS&gt;/EAS_sumstats.gz \
+           &lt;summary stats directory for EUR&gt;/EUR_sumstats.gz \
+    --ref-ld-chr &lt;baseline LD score directory&gt;/EAS_EUR_baseline_chr \
+                 &lt;AVGLLD LD score directory&gt;/EAS_EUR_avglld_chr \
+                 &lt;BSTAT LD score directory&gt;/EAS_EUR_bstat_chr \
+                 &lt;ALLELEAGE LD score directory&gt;/EAS_EUR_alleleage_chr \
+    --w-ld-chr &lt;regression weight directory&gt;/EAS_EUR_weight_chr \
+    --frqfile &lt;EAS MAF directory&gt;/1000G.EAS. \
+              &lt;EUR MAF directory&gt;/1000G.EUR. \
+    --annot &lt;baseline annotation directory&gt;/baseline. \
+            &lt;AVGLLD annotation directory&gt;/avglld. \
+            &lt;BSTAT annotation directory&gt;/bstat. \
+            &lt;ALLELEAGE annotation directory&gt;/alleleage. \
+    --apply-shrinkage 0.5 \
+    --save-pseudo-coef \
+    --out TRAIT_EAS_EUR.txt
+</pre></div>
+
+
+<p>Here are the meanings of the flags:</p>
+<ul>
+<li>
+<p><code>--gcor</code> specifies the summary stats files. This flag takes 2 arguments -
+summary stats for population 1 and summary stats for population 2.</p>
+</li>
+<li>
+<p><code>--ref-ld-chr</code> specifies prefix of the LD score files. This flag takes one
+or more arguments – one may put as many LD score files as one wishes.</p>
+</li>
+<li>
+<p><code>--w-ld-chr</code> specifies prefix of the regression weights. These are
+standardized LD scores calculated from regression SNPs.</p>
+</li>
+<li>
+<p><code>--frqfile</code> specifies prefix of minor allele frequency files.</p>
+</li>
+<li>
+<p><code>--annot</code> specifies prefix of the annotation files. This flags also takes
+one or more arguments. Note: the order one specifies the annotation files must
+be the same as the order one specifies the LD score files. The annotation
+files must also be the same files that one uses to obtain the LD scores.</p>
+</li>
+<li>
+<p><code>--apply-shrinkage</code> adjusts the level of shrinkage (the \(\alpha\) tuning
+parameter in the paper). This should be a number between 0 and 1.</p>
+</li>
+<li>
+<p><code>--save-pseudo-coef</code> If this flag is specified, jackknife pseudo values of
+the coefficients will be saved. This flag is optional.</p>
+</li>
+<li>
+<p><code>--out</code> specifies the output file name.</p>
+</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
