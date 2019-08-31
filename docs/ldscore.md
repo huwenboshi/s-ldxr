@@ -2,7 +2,7 @@
 
 This page describes how to estimate LD scores
 
-### Running the tool
+### The command
 
 X-LDSC estimates LD scores with the following command.
 
@@ -15,8 +15,8 @@ do
         --print-snps <a list of SNPs to print> \
         --bfile <EAS reference panel directory>/1000G.EAS.${chrom} \
                 <EUR reference panel directory>/1000G.EUR.${chrom} \
-        --annot <annotation directory>/baseline.${chrom}.annot.gz \
-        --out <output directory>/EAS_EUR_baseline_chr${chrom}
+        --annot <annotation directory>/<annotation file>.${chrom}.annot.gz \
+        --out <output directory>/<ld score file prefix>.${chrom}
 done
 ```
 
@@ -49,13 +49,18 @@ format, and have the same set of SNPs.
 
 * `--out` specifies prefix of the output files.
 
-### Interpreting the output
+### The output
 
 After executing the command above, 4 files will be created for each
 chromosome (i.e. 88 files for all 22 chromosomes):
 
-* **step1_chr22.info.gz** - contains the locus information, including start and end
-positions, number of SNPs, rank of LD matrices, and sample size
+* **<ld score file prefix>.<chrom>_pop1.gz** -- LD score files for the 1st
+population (correspond to EAS in the above command).
+
+* **<ld score file prefix>.<chrom>_pop2.gz** -- LD score files for the 2nd
+population (correspond to EUR in the above command).
+
+* **<ld score file prefix>.<chrom>_te.gz** -- Trans-ethnic LD score files.
 
 * **step1_chr22.log** - contains helpful information for debugging, including
 number of SNPs, number of SNPs filtered, etc.
