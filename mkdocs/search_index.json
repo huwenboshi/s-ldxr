@@ -2,13 +2,23 @@
     "docs": [
         {
             "location": "/", 
-            "text": "X-LDSC", 
+            "text": "X-LDSC\n\n\nX-LDSC (trans-ethnic stratified LD score regression) is a software package\nfor stratifying squared trans-ethnic genetic correlation from GWAS summary\nstatistics. The latest version is\n\nversion 0.1-beta\n.\nBaseline-LD-X annotations and LD scores can be downloaded \nhere\n.\n\n\nSoftware requirement\n\n\n\n\nPython 2.7\n (sorry!)\n\n\nNumPy 1.15+\n \n\n\nPandas 0.23.4+\n\n\nPySnpTools 0.3+\n\n\nSciPy 1.1.0+\n\n\n\n\nContact\n\n\n\n\nHuwenbo Shi\n: hshi_AT_hsph.harvard.edu", 
             "title": "Home"
         }, 
         {
             "location": "/#x-ldsc", 
-            "text": "", 
+            "text": "X-LDSC (trans-ethnic stratified LD score regression) is a software package\nfor stratifying squared trans-ethnic genetic correlation from GWAS summary\nstatistics. The latest version is version 0.1-beta .\nBaseline-LD-X annotations and LD scores can be downloaded  here .", 
             "title": "X-LDSC"
+        }, 
+        {
+            "location": "/#software-requirement", 
+            "text": "Python 2.7  (sorry!)  NumPy 1.15+    Pandas 0.23.4+  PySnpTools 0.3+  SciPy 1.1.0+", 
+            "title": "Software requirement"
+        }, 
+        {
+            "location": "/#contact", 
+            "text": "Huwenbo Shi : hshi_AT_hsph.harvard.edu", 
+            "title": "Contact"
         }, 
         {
             "location": "/faq/", 
