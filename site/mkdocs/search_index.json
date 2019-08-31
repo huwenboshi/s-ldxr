@@ -56,6 +56,16 @@
             "title": "Minor allele frequency files"
         }, 
         {
+            "location": "/ldscore/", 
+            "text": "", 
+            "title": "LD score"
+        }, 
+        {
+            "location": "/gcorsq/", 
+            "text": "", 
+            "title": "Squared trans-ethnic genetic correlation"
+        }, 
+        {
             "location": "/faq/", 
             "text": "Frequently asked questions", 
             "title": "FAQ"
