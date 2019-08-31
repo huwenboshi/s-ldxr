@@ -1,8 +1,10 @@
 # Input Format
 
-This page describes the format of the GWAS summary statistics data (specified
-using the `--gcor` flag) andthe reference panel required by X-LDSC (specified
-using the `--bfile` format).
+This page describes the format of GWAS summary statistics data (specified
+by the `--gcor` flag), reference panel (specified by the `--bfile` flag),
+annotation files (specified by the `--annot` flag), LD score files (
+specified by the `--ref-ld-chr` flag), and minor allele frequency files (
+specified by the `--frqfile` flag).
 
 ## GWAS summary statistics data
 
@@ -37,5 +39,42 @@ The following is a list of publicly available reference panels.
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
 ( <b>Note</b>: X-LDSC requires the centimorgan information of each SNP to
-accurate estimation of LD scores. )
+accurate estimation of LD scores.)
 </div>
+
+## Annotation files
+
+Annotation files should be in gzipped text format. The first 4 columns should
+always be:
+
+* CHR - Chromosome number of the SNP.
+* BP - Base pair position of the SNP.
+* SNP - rs ID of the SNP (e.g. rs19800731).
+* CM - Position of the SNP in centimogan.
+
+The first annotation (usually the base annotation) should start on the 5th
+column.
+
+## LD score files
+
+LD score files should be in gzipped text format. The first 3 columns should
+always be:
+
+* CHR - Chromosome number of the SNP.
+* SNP - rs ID of the SNP (e.g. rs19790919).
+* BP - Base pair position of the SNP.
+
+LD scores of the first annotation (usually the base annotation) should start
+on the 4th column.
+
+## Minor allele frequency files
+
+Minor allele frequency files format is the same as that of PLINK. The columns
+are:
+
+* CHR - Chromosome number of the SNP.
+* SNP - rs ID of the SNP (e.g. rs19800301).
+* A1 - Non-effect allele.
+* A2 - Effect allele (encoded as 1 in PLINK bed file).
+* MAF - Minor allele frequency
+* NCHROBS - Number of samples times 2.

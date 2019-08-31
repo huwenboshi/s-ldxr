@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="Huwenbo Shi">
-        <link rel="canonical" href="https://huwenboshi.github.io/x-ldsc/faq/">
+        <link rel="canonical" href="https://huwenboshi.github.io/x-ldsc/input_format/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>FAQ - X-LDSC</title>
+        <title>Input Format - X-LDSC</title>
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -57,11 +57,11 @@
                     <li >
                         <a href="..">Home</a>
                     </li>
-                    <li >
-                        <a href="../input_format/">Input Format</a>
-                    </li>
                     <li class="active">
-                        <a href="./">FAQ</a>
+                        <a href="./">Input Format</a>
+                    </li>
+                    <li >
+                        <a href="../faq/">FAQ</a>
                     </li>
                 </ul>
 
@@ -72,12 +72,12 @@
                     </a>
                 </li>
                     <li >
-                        <a rel="next" href="../input_format/">
+                        <a rel="next" href="..">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li class="disabled">
-                        <a rel="prev" >
+                    <li >
+                        <a rel="prev" href="../faq/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -94,12 +94,49 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+        <li class="main active"><a href="#input-format">Input Format</a></li>
+            <li><a href="#gwas-summary-statistics-data">GWAS summary statistics data</a></li>
+            <li><a href="#reference-panel">Reference panel</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="frequently-asked-questions">Frequently asked questions</h1></div>
+<h1 id="input-format">Input Format</h1>
+<p>This page describes the format of the GWAS summary statistics data (specified
+using the <code>--gcor</code> flag) andthe reference panel required by X-LDSC (specified
+using the <code>--bfile</code> format).</p>
+<h2 id="gwas-summary-statistics-data">GWAS summary statistics data</h2>
+<p>GWAS summary statistics data should be in plain text or gzipped text format
+containing the following columns:</p>
+<ul>
+<li>SNP - rs ID of the SNP (e.g. rs62442).</li>
+<li>CHR - Chromosome number of the SNP. This should be a number between 1 and 22.</li>
+<li>BP - Base pair position of the SNP.</li>
+<li>A1 - Effect allele of the SNP. The sign of the Z-score is with respect to this allele.</li>
+<li>A2 - The other allele of the SNP.</li>
+<li>Z - The Z-score of the SNP.</li>
+<li>N - Sample size of the SNP.</li>
+</ul>
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+( <b>Note</b>:  This file format is compatible with <a href="https://github.com/bulik/ldsc">LDSC</a>.
+Other columns [e.g. MAF, INFO, etc.] may be included in the file, but will not
+be used. It is also recommended [although not required] that the summary data
+files are sorted by their chromosomes and base pairs. All SNPs with either
+duplicate ID or position will be removed before any analysis. )
+</div>
+
+<h2 id="reference-panel">Reference panel</h2>
+<p>Reference panels should be in <a href="https://www.cog-genomics.org/plink/2.0/input#bed">PLINK format</a>
+(specified using the <code>--bfile</code> flag).</p>
+<p>The following is a list of publicly available reference panels.</p>
+<ul>
+<li><a href="http://www.internationalgenome.org/data/">1000 Genomes Project</a></li>
+<li><a href="https://www.uk10k.org/data_access.html">UK10K</a></li>
+</ul>
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+( <b>Note</b>: X-LDSC requires the centimorgan information of each SNP to
+accurate estimation of LD scores. )
+</div></div>
         </div>
 
         <footer class="col-md-12">

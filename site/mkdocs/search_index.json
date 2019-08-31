@@ -21,6 +21,26 @@
             "title": "Contact"
         }, 
         {
+            "location": "/input_format/", 
+            "text": "Input Format\n\n\nThis page describes the format of the GWAS summary statistics data (specified\nusing the \n--gcor\n flag) andthe reference panel required by X-LDSC (specified\nusing the \n--bfile\n format).\n\n\nGWAS summary statistics data\n\n\nGWAS summary statistics data should be in plain text or gzipped text format\ncontaining the following columns:\n\n\n\n\nSNP - rs ID of the SNP (e.g. rs62442).\n\n\nCHR - Chromosome number of the SNP. This should be a number between 1 and 22.\n\n\nBP - Base pair position of the SNP.\n\n\nA1 - Effect allele of the SNP. The sign of the Z-score is with respect to this allele.\n\n\nA2 - The other allele of the SNP.\n\n\nZ - The Z-score of the SNP.\n\n\nN - Sample size of the SNP.\n\n\n\n\n\n( \nNote\n:  This file format is compatible with \nLDSC\n.\nOther columns [e.g. MAF, INFO, etc.] may be included in the file, but will not\nbe used. It is also recommended [although not required] that the summary data\nfiles are sorted by their chromosomes and base pairs. All SNPs with either\nduplicate ID or position will be removed before any analysis. )\n\n\n\n\nReference panel\n\n\nReference panels should be in \nPLINK format\n\n(specified using the \n--bfile\n flag).\n\n\nThe following is a list of publicly available reference panels.\n\n\n\n\n1000 Genomes Project\n\n\nUK10K\n\n\n\n\n\n( \nNote\n: X-LDSC requires the centimorgan information of each SNP to\naccurate estimation of LD scores. )", 
+            "title": "Input Format"
+        }, 
+        {
+            "location": "/input_format/#input-format", 
+            "text": "This page describes the format of the GWAS summary statistics data (specified\nusing the  --gcor  flag) andthe reference panel required by X-LDSC (specified\nusing the  --bfile  format).", 
+            "title": "Input Format"
+        }, 
+        {
+            "location": "/input_format/#gwas-summary-statistics-data", 
+            "text": "GWAS summary statistics data should be in plain text or gzipped text format\ncontaining the following columns:   SNP - rs ID of the SNP (e.g. rs62442).  CHR - Chromosome number of the SNP. This should be a number between 1 and 22.  BP - Base pair position of the SNP.  A1 - Effect allele of the SNP. The sign of the Z-score is with respect to this allele.  A2 - The other allele of the SNP.  Z - The Z-score of the SNP.  N - Sample size of the SNP.   \n(  Note :  This file format is compatible with  LDSC .\nOther columns [e.g. MAF, INFO, etc.] may be included in the file, but will not\nbe used. It is also recommended [although not required] that the summary data\nfiles are sorted by their chromosomes and base pairs. All SNPs with either\nduplicate ID or position will be removed before any analysis. )", 
+            "title": "GWAS summary statistics data"
+        }, 
+        {
+            "location": "/input_format/#reference-panel", 
+            "text": "Reference panels should be in  PLINK format \n(specified using the  --bfile  flag).  The following is a list of publicly available reference panels.   1000 Genomes Project  UK10K   \n(  Note : X-LDSC requires the centimorgan information of each SNP to\naccurate estimation of LD scores. )", 
+            "title": "Reference panel"
+        }, 
+        {
             "location": "/faq/", 
             "text": "Frequently asked questions", 
             "title": "FAQ"

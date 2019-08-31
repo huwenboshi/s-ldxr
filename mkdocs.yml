@@ -16,6 +16,7 @@ theme: 'mkdocs'
 # define pages
 pages:
     - Home: 'index.md'
+    - Input Format: 'input_format.md'
     - FAQ: 'faq.md'
 
 # Options
