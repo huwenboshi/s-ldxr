@@ -54,16 +54,16 @@ format, and have the same set of SNPs.
 After executing the command above, 4 files will be created for each
 chromosome (i.e. 88 files for all 22 chromosomes):
 
-* **<ld score file prefix>.<chrom>_pop1.gz** -- LD score files for the 1st
+* `<ld score file prefix>.<chrom>_pop1.gz` - LD score files for the 1st
 population (correspond to EAS in the above command).
 
-* **<ld score file prefix>.<chrom>_pop2.gz** -- LD score files for the 2nd
+* `<ld score file prefix>.<chrom>_pop2.gz` - LD score files for the 2nd
 population (correspond to EUR in the above command).
 
-* **<ld score file prefix>.<chrom>_te.gz** -- Trans-ethnic LD score files.
+* `<ld score file prefix>.<chrom>_te.gz` - Trans-ethnic LD score files.
 
-* **step1_chr22.log** - contains helpful information for debugging, including
-number of SNPs, number of SNPs filtered, etc.
+* `<ld score file prefix>.<chrom>.log` - contains helpful information for
+debugging, including number of SNPs, number of SNPs filtered, etc.
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
 <b>Note</b>: Log files are very useful in pinpointing bugs of the
