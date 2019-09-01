@@ -127,13 +127,13 @@ frequency files (specified by the <code>--frqfile</code> flag).</p>
 <p>GWAS summary statistics data should be in plain text or gzipped text format
 containing the following columns:</p>
 <ul>
-<li>SNP - rs ID of the SNP (e.g. rs62442).</li>
-<li>CHR - Chromosome number of the SNP. This should be a number between 1 and 22.</li>
-<li>BP - Base pair position of the SNP.</li>
-<li>A1 - Effect allele of the SNP. The sign of the Z-score is with respect to this allele.</li>
-<li>A2 - The other allele of the SNP.</li>
-<li>Z - The Z-score of the SNP.</li>
-<li>N - Sample size of the SNP.</li>
+<li><code>SNP</code> rs ID of the SNP (e.g. rs62442).</li>
+<li><code>CHR</code> Chromosome number of the SNP. This should be a number between 1 and 22.</li>
+<li><code>BP</code> Base pair position of the SNP.</li>
+<li><code>A1</code> Effect allele of the SNP. The sign of the Z-score is with respect to this allele.</li>
+<li><code>A2</code> The other allele of the SNP.</li>
+<li><code>Z</code> The Z-score of the SNP.</li>
+<li><code>N</code> Sample size of the SNP.</li>
 </ul>
 <div style="background-color:rgba(230, 230, 250, 1.0);">
 <b>Note</b>:  This file format is compatible with <a href="https://github.com/bulik/ldsc">LDSC</a>.
@@ -160,10 +160,10 @@ accurate estimation of LD scores.
 <p>Annotation files should be in gzipped text format. The first 4 columns should
 always be:</p>
 <ul>
-<li>CHR - Chromosome number of the SNP.</li>
-<li>BP - Base pair position of the SNP.</li>
-<li>SNP - rs ID of the SNP (e.g. rs19800731).</li>
-<li>CM - Position of the SNP in centimogan.</li>
+<li><code>CHR</code> Chromosome number of the SNP.</li>
+<li><code>BP</code> Base pair position of the SNP.</li>
+<li><code>SNP</code> rs ID of the SNP (e.g. rs19800731).</li>
+<li><code>CM</code> Position of the SNP in centimogan.</li>
 </ul>
 <p>The first annotation (usually the base annotation) should start on the 5th
 column.</p>
@@ -171,9 +171,9 @@ column.</p>
 <p>LD score files should be in gzipped text format. The first 3 columns should
 always be:</p>
 <ul>
-<li>CHR - Chromosome number of the SNP.</li>
-<li>SNP - rs ID of the SNP (e.g. rs19790919).</li>
-<li>BP - Base pair position of the SNP.</li>
+<li><code>CHR</code> Chromosome number of the SNP.</li>
+<li><code>SNP</code> rs ID of the SNP (e.g. rs19790919).</li>
+<li><code>BP</code> Base pair position of the SNP.</li>
 </ul>
 <p>LD scores of the first annotation (usually the base annotation) should start
 on the 4th column.</p>
@@ -186,12 +186,12 @@ has the same format as LD score files.
 <p>Minor allele frequency files format is the same as that of PLINK. The columns
 are:</p>
 <ul>
-<li>CHR - Chromosome number of the SNP.</li>
-<li>SNP - rs ID of the SNP (e.g. rs19800301).</li>
-<li>A1 - Non-effect allele.</li>
-<li>A2 - Effect allele (encoded as 1 in PLINK bed file).</li>
-<li>MAF - Minor allele frequency</li>
-<li>NCHROBS - Number of samples times 2.</li>
+<li><code>CHR</code> Chromosome number of the SNP.</li>
+<li><code>SNP</code> rs ID of the SNP (e.g. rs19800301).</li>
+<li><code>A1</code> Non-effect allele.</li>
+<li><code>A2</code> Effect allele (encoded as 1 in PLINK bed file).</li>
+<li><code>MAF</code> Minor allele frequency</li>
+<li><code>NCHROBS</code> Number of samples times 2.</li>
 </ul></div>
         </div>
 
