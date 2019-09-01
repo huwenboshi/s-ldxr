@@ -196,11 +196,11 @@ def get_command_line():
     parser.add_argument('--coef', dest='coef', type=str, required=False,
         help='Coefficient files')
 
-    parser.add_argument('--ld-annot', dest='ld-annot', type=str, required=False,
-        nargs='+', help='LD-related annotation file')
+    parser.add_argument('--cont-annot', dest='ld-annot', type=str, required=False,
+        nargs='+', help='Continuous-valued annotation file')
 
-    parser.add_argument('--baseline-annot', dest='baseline-annot', type=str,
-        required=False, nargs='+', help='Baseline annotation file')
+    parser.add_argument('--bin-annot', dest='baseline-annot', type=str,
+        required=False, nargs='+', help='Binary annotation file')
 
     parser.add_argument('--use-chrom', dest='use-chrom', type=int,
         required=False, default=[1, 22], nargs=2,
