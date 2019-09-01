@@ -276,7 +276,7 @@ of shrinkage.</p>
 continuous-valued annotations requires two steps.</p>
 <p>The first step gets the coefficients (\(\tau_{1C}\), \(\tau_{2C}\),
 and \(\theta_{C}\)) of each continuous-valued annotations</p>
-<div class="codehilite"><pre><span></span>python $src/x-ldsc.py \
+<div class="codehilite"><pre><span></span>python &lt;software directory&gt;/x-ldsc.py \
     --gcor &lt;summary stats directory for EAS&gt;/EAS_sumstats.gz \
            &lt;summary stats directory for EUR&gt;/EUR_sumstats.gz \
     --ref-ld-chr &lt;base LD score directory&gt;/EAS_EUR_allelic_chr \
@@ -303,16 +303,16 @@ baseline) annotation.
 <p>The output is the same as that of a typical command.</p>
 <p>The second step uses the coefficients from the first step to obtain expected
 \(r^2_g(C)\) and \(\lambda^2(C)\) from continuous-valued annotations.</p>
-<div class="codehilite"><pre><span></span>python <span class="cp">${</span><span class="n">src</span><span class="cp">}</span>/pred_binannot_from_contannot.py \
+<div class="codehilite"><pre><span></span>python &lt;software directory&gt;/pred_binannot_from_contannot.py \
     --coef ./TRAIT_EAS_EUR_step1.txt \
-    --frqfile <span class="nt">&lt;EAS</span> <span class="err">MAF</span> <span class="err">directory</span><span class="nt">&gt;</span>/1000G.EAS. \
-              <span class="nt">&lt;EUR</span> <span class="err">MAF</span> <span class="err">directory</span><span class="nt">&gt;</span>/1000G.EUR. \
-    --cont-annot <span class="nt">&lt;base</span> <span class="err">annotation</span> <span class="err">directory</span><span class="nt">&gt;</span>/base. \
-                 <span class="nt">&lt;AVGLLD</span> <span class="err">annotation</span> <span class="err">directory</span><span class="nt">&gt;</span>/avglld. \
-                 <span class="nt">&lt;BSTAT</span> <span class="err">annotation</span> <span class="err">directory</span><span class="nt">&gt;</span>/bstat. \
-                 <span class="nt">&lt;ALLELEAGE</span> <span class="err">annotation</span> <span class="err">directory</span><span class="nt">&gt;</span>/alleleage. \
-    --bin-annot <span class="nt">&lt;base</span> <span class="err">annotation</span> <span class="err">directory</span><span class="nt">&gt;</span>/base. \
-                <span class="nt">&lt;binary</span> <span class="err">annotation</span> <span class="err">directory</span><span class="nt">&gt;</span>/annot_name. \
+    --frqfile &lt;EAS MAF directory&gt;/1000G.EAS. \
+              &lt;EUR MAF directory&gt;/1000G.EUR. \
+    --cont-annot &lt;base annotation directory&gt;/base. \
+                 &lt;AVGLLD annotation directory&gt;/avglld. \
+                 &lt;BSTAT annotation directory&gt;/bstat. \
+                 &lt;ALLELEAGE annotation directory&gt;/alleleage. \
+    --bin-annot &lt;base annotation directory&gt;/base. \
+                &lt;binary annotation directory&gt;/annot_name. \
     --apply-shrinkage 0.5 \
     --out ./TRAIT_EAS_EUR_step2.txt
 </pre></div>
@@ -323,6 +323,8 @@ baseline) annotation.
 baseline) annotation.
 </div>
 
+<p>The output is the same as that of the command for continuous-valued
+annotations.</p>
 <h3 id="interpreting-the-output">Interpreting the output</h3>
 <p>The output files of X-LDSC contain the following columns.</p>
 <ol>
