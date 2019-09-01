@@ -140,7 +140,7 @@ The first step gets the coefficients (\\(\tau_{1C}\\), \\(\tau_{2C}\\),
 and \\(\theta_{C}\\)) of each continuous-valued annotations
 
 ```
-python $src/x-ldsc.py \
+python <software directory>/x-ldsc.py \
     --gcor <summary stats directory for EAS>/EAS_sumstats.gz \
            <summary stats directory for EUR>/EUR_sumstats.gz \
     --ref-ld-chr <base LD score directory>/EAS_EUR_allelic_chr \
@@ -169,7 +169,7 @@ The second step uses the coefficients from the first step to obtain expected
 \\(r^2_g(C)\\) and \\(\lambda^2(C)\\) from continuous-valued annotations.
 
 ```
-python ${src}/pred_binannot_from_contannot.py \
+python <software directory>/pred_binannot_from_contannot.py \
     --coef ./TRAIT_EAS_EUR_step1.txt \
     --frqfile <EAS MAF directory>/1000G.EAS. \
               <EUR MAF directory>/1000G.EUR. \
@@ -187,6 +187,9 @@ python ${src}/pred_binannot_from_contannot.py \
 <b>Note</b>: It is important to always include the base (not
 baseline) annotation.
 </div>
+
+The output is the same as that of the command for continuous-valued
+annotations.
 
 ### Interpreting the output
 
