@@ -107,16 +107,16 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#estimating-stratified-squared-trans-ethnic-genetic-correlation-and-its">Estimating stratified squared trans-ethnic genetic correlation and its</a></li>
+        <li class="main active"><a href="#estimating-stratified-squared-trans-ethnic-genetic-correlation-and-its-enrichment">Estimating stratified squared trans-ethnic genetic correlation and its enrichment</a></li>
             <li><a href="#the-command">The command</a></li>
             <li><a href="#the-output">The output</a></li>
+            <li><a href="#continuous-valued-annotations">Continuous-valued annotations</a></li>
             <li><a href="#interpreting-the-output">Interpreting the output</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="estimating-stratified-squared-trans-ethnic-genetic-correlation-and-its">Estimating stratified squared trans-ethnic genetic correlation and its</h1>
-<p>enrichment</p>
+<h1 id="estimating-stratified-squared-trans-ethnic-genetic-correlation-and-its-enrichment">Estimating stratified squared trans-ethnic genetic correlation and its enrichment</h1>
 <p>This page describes how to estimate stratified squared trans-ethnic genetic
 correlation, \(r^2_{g}(C)\), and its enrichment, \(\lambda^2(C)\).</p>
 <h3 id="the-command">The command</h3>
@@ -210,6 +210,66 @@ coefficients for population 2.</p>
 --save-pseudo-coef flag is specified.
 </div>
 
+<h3 id="continuous-valued-annotations">Continuous-valued annotations</h3>
+<p>The following command estimates enrichment of stratified squared trans-ethnic
+genetic correlation of quintiles of continuous-valued annotations.</p>
+<div class="codehilite"><pre><span></span>python &lt;software directory&gt;/cont_annot_gcor.py \
+    --coef TRAIT_EAS_EUR.txt \
+    --frqfile &lt;EAS MAF directory&gt;/1000G.EAS. \
+              &lt;EUR MAF directory&gt;/1000G.EUR. \
+    --annot &lt;baseline annotation directory&gt;/baseline. \
+            &lt;AVGLLD annotation directory&gt;/avglld. \
+            &lt;BSTAT annotation directory&gt;/bstat. \
+            &lt;ALLELEAGE annotation directory&gt;/alleleage. \
+    --names AVGLLD BSTAT ALLELEAGE \
+    --nbins 5 \
+    --out TRAIT_EAS_EUR_contannot.txt
+</pre></div>
+
+
+<p>Here are the meanings of the flags.</p>
+<ul>
+<li>
+<p><code>--coef</code> specifies the output from the previous step. The jackknife pseudo
+coefficients will be loaded automatically.</p>
+</li>
+<li>
+<p><code>--frqfile</code> specifies prefix of minor allele frequency files.</p>
+</li>
+<li>
+<p><code>--annot</code> specifies prefix of the annotation files. This flags also takes
+one or more arguments.</p>
+</li>
+</ul>
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: The order one specifies the annotation files must be the same as the
+order of annotations in TRAIT_EAS_EUR.txt.
+</div>
+
+<ul>
+<li>
+<p><code>--names</code> specifies the names of the continuous annotations for which one
+wishes to compute enrichment at quintiles.</p>
+</li>
+<li>
+<p><code>--nbins</code> specifies the number of bins to bin the SNPs based on the values
+of their continuous annotation. The default is 5 (i.e. quintiles).</p>
+</li>
+<li>
+<p><code>--out</code> specifies the output file name.</p>
+</li>
+</ul>
+<p>Additionally, users may use the <code>--apply-shrinkage</code> flag to adjust the level
+of shrinkage.</p>
+<p>After executing the above command, 2 files will be created.</p>
+<ul>
+<li>
+<p><code>TRAIT_EAS_EUR_contannot.txt</code> contains the estimates.</p>
+</li>
+<li>
+<p><code>TRAIT_EAS_EUR_contannot.txt.log</code> is the log file for debugging purpose.</p>
+</li>
+</ul>
 <h3 id="interpreting-the-output">Interpreting the output</h3>
 <p>The output files of X-LDSC contain the following columns.</p>
 <ol>

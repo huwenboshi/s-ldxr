@@ -3,7 +3,7 @@
 This page describes how to estimate stratified squared trans-ethnic genetic
 correlation, \\(r^2_{g}(C)\\), and its enrichment, \\(\lambda^2(C)\\).
 
-### The command
+### Typical command
 
 X-LDSC estimates \\(r^2_{g}(C)\\) and \\(\lambda^2(C)\\) with the
 following command.
@@ -58,7 +58,7 @@ the coefficients will be saved. This flag is optional.
 
 * `--out` specifies the output file name.
 
-### The output
+### Output
 
 After executing the above command, 5 files will be generated.
 
@@ -130,6 +130,63 @@ After executing the above command, 2 files will be created.
 * `TRAIT_EAS_EUR_contannot.txt` contains the estimates.
 
 * `TRAIT_EAS_EUR_contannot.txt.log` is the log file for debugging purpose.
+
+### Expected \\(r^2_g(C)\\) and \\(\lambda^2(C)\\) from continuous-valued annotations
+
+Estimating expected \\(r^2_g(C)\\) and \\(\lambda^2(C)\\) from
+continuous-valued annotations requires two steps.
+
+The first step gets the coefficients (\\(\tau_{1C}\\), \\(\tau_{2C}\\),
+and \\(\theta_{C}\\)) of each continuous-valued annotations
+
+```
+python $src/x-ldsc.py \
+    --gcor <summary stats directory for EAS>/EAS_sumstats.gz \
+           <summary stats directory for EUR>/EUR_sumstats.gz \
+    --ref-ld-chr <base LD score directory>/EAS_EUR_allelic_chr \
+                 <AVGLLD LD score directory>/EAS_EUR_allelic_chr \
+                 <BSTAT LD score directory>/EAS_EUR_allelic_chr \
+                 <ALLELEAGE LD score directory>/EAS_EUR_allelic_chr \
+    --w-ld-chr <regression weight directory>/EAS_EUR_weight_chr \
+    --frqfile <EAS MAF directory>/1000G.EAS. \
+              <EUR MAF directory>/1000G.EUR. \
+    --annot <base annotation directory>/base. \
+            <AVGLLD annotation directory>/avglld. \
+            <BSTAT annotation directory>/bstat. \
+            <ALLELEAGE annotation directory>/alleleage. \
+    --save-pseudo-coef \
+    --out ./TRAIT_EAS_EUR_step1.txt
+```
+
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: It is important to always include the base (not
+baseline) annotation.
+</div>
+
+The output is the same as that of a typical command.
+
+The second step uses the coefficients from the first step to obtain expected
+\\(r^2_g(C)\\) and \\(\lambda^2(C)\\) from continuous-valued annotations.
+
+```
+python ${src}/pred_binannot_from_contannot.py \
+    --coef ./TRAIT_EAS_EUR_step1.txt \
+    --frqfile <EAS MAF directory>/1000G.EAS. \
+              <EUR MAF directory>/1000G.EUR. \
+    --cont-annot <base annotation directory>/base. \
+                 <AVGLLD annotation directory>/avglld. \
+                 <BSTAT annotation directory>/bstat. \
+                 <ALLELEAGE annotation directory>/alleleage. \
+    --bin-annot <base annotation directory>/base. \
+                <binary annotation directory>/annot_name. \
+    --apply-shrinkage 0.5 \
+    --out ./TRAIT_EAS_EUR_step2.txt
+```
+
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: It is important to always include the base (not
+baseline) annotation.
+</div>
 
 ### Interpreting the output
 
