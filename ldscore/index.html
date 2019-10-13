@@ -117,10 +117,10 @@
 <h1 id="estimating-ld-scores">Estimating LD scores</h1>
 <p>This page describes how to estimate LD scores</p>
 <h3 id="the-command">The command</h3>
-<p>X-LDSC estimates LD scores with the following command.</p>
+<p>S-LDXR estimates LD scores with the following command.</p>
 <div class="codehilite"><pre><span></span>for chrom in $(seq 22)
 do
-    python <span class="nt">&lt;software</span> <span class="err">directory</span><span class="nt">&gt;</span>/x-ldsc.py \
+    python <span class="nt">&lt;software</span> <span class="err">directory</span><span class="nt">&gt;</span>/s-ldxr.py \
         --score allelic \
         --ld-wind-cm 1.0 \
         --print-snps <span class="nt">&lt;a</span> <span class="err">list</span> <span class="err">of</span> <span class="err">SNPs</span> <span class="err">to</span> <span class="err">print</span><span class="nt">&gt;</span> \

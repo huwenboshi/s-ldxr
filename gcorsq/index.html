@@ -121,9 +121,9 @@
 <p>This page describes how to estimate stratified squared trans-ethnic genetic
 correlation, \(r^2_{g}(C)\), and its enrichment, \(\lambda^2(C)\).</p>
 <h3 id="typical-command">Typical command</h3>
-<p>X-LDSC estimates \(r^2_{g}(C)\) and \(\lambda^2(C)\) with the
+<p>S-LDXR estimates \(r^2_{g}(C)\) and \(\lambda^2(C)\) with the
 following command.</p>
-<div class="codehilite"><pre><span></span>python &lt;software directory&gt;/x-ldsc.py \
+<div class="codehilite"><pre><span></span>python &lt;software directory&gt;/s-ldxr.py \
     --gcor &lt;summary stats directory for EAS&gt;/EAS_sumstats.gz \
            &lt;summary stats directory for EUR&gt;/EUR_sumstats.gz \
     --ref-ld-chr &lt;baseline LD score directory&gt;/EAS_EUR_baseline_chr \
@@ -276,7 +276,7 @@ of shrinkage.</p>
 continuous-valued annotations requires two steps.</p>
 <p>The first step gets the coefficients (\(\tau_{1C}\), \(\tau_{2C}\),
 and \(\theta_{C}\)) of each continuous-valued annotations</p>
-<div class="codehilite"><pre><span></span>python &lt;software directory&gt;/x-ldsc.py \
+<div class="codehilite"><pre><span></span>python &lt;software directory&gt;/s-ldxr.py \
     --gcor &lt;summary stats directory for EAS&gt;/EAS_sumstats.gz \
            &lt;summary stats directory for EUR&gt;/EUR_sumstats.gz \
     --ref-ld-chr &lt;base LD score directory&gt;/EAS_EUR_allelic_chr \
@@ -326,7 +326,7 @@ baseline) annotation.
 <p>The output is the same as that of the command for continuous-valued
 annotations.</p>
 <h3 id="interpreting-the-output">Interpreting the output</h3>
-<p>The output files of X-LDSC contain the following columns.</p>
+<p>The output files of S-LDXR contain the following columns.</p>
 <ol>
 <li>
 <p><code>ANNOT</code> name of the annotation</p>
