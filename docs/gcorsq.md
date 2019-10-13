@@ -5,11 +5,11 @@ correlation, \\(r^2_{g}(C)\\), and its enrichment, \\(\lambda^2(C)\\).
 
 ### Typical command
 
-X-LDSC estimates \\(r^2_{g}(C)\\) and \\(\lambda^2(C)\\) with the
+S-LDXR estimates \\(r^2_{g}(C)\\) and \\(\lambda^2(C)\\) with the
 following command.
 
 ```
-python <software directory>/x-ldsc.py \
+python <software directory>/s-ldxr.py \
     --gcor <summary stats directory for EAS>/EAS_sumstats.gz \
            <summary stats directory for EUR>/EUR_sumstats.gz \
     --ref-ld-chr <baseline LD score directory>/EAS_EUR_baseline_chr \
@@ -140,7 +140,7 @@ The first step gets the coefficients (\\(\tau_{1C}\\), \\(\tau_{2C}\\),
 and \\(\theta_{C}\\)) of each continuous-valued annotations
 
 ```
-python <software directory>/x-ldsc.py \
+python <software directory>/s-ldxr.py \
     --gcor <summary stats directory for EAS>/EAS_sumstats.gz \
            <summary stats directory for EUR>/EUR_sumstats.gz \
     --ref-ld-chr <base LD score directory>/EAS_EUR_allelic_chr \
@@ -193,7 +193,7 @@ annotations.
 
 ### Interpreting the output
 
-The output files of X-LDSC contain the following columns.
+The output files of S-LDXR contain the following columns.
 
 1. `ANNOT` name of the annotation
 

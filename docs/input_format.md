@@ -38,7 +38,7 @@ The following is a list of publicly available reference panels.
 * [UK10K](https://www.uk10k.org/data_access.html)
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-<b>Note</b>: X-LDSC requires the centimorgan information of each SNP to
+<b>Note</b>: S-LDXR requires the centimorgan information of each SNP to
 accurate estimation of LD scores.
 </div>
 

@@ -4,12 +4,12 @@ This page describes how to estimate LD scores
 
 ### The command
 
-X-LDSC estimates LD scores with the following command.
+S-LDXR estimates LD scores with the following command.
 
 ```
 for chrom in $(seq 22)
 do
-    python <software directory>/x-ldsc.py \
+    python <software directory>/s-ldxr.py \
         --score allelic \
         --ld-wind-cm 1.0 \
         --print-snps <a list of SNPs to print> \
