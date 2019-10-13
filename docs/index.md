@@ -1,6 +1,6 @@
-# X-LDSC
+# S-LDXR
 
-X-LDSC (trans-ethnic stratified LD score regression) is a software package
+S-LDXR (stratified trans-ethnic genetic correlation) is a software package
 for stratifying squared trans-ethnic genetic correlation from GWAS summary
 statistics. The latest version is
 [version 0.1-beta](https://github.com/huwenboshi/x-ldsc/archive/v0.1-beta.zip).
