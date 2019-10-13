@@ -1,6 +1,6 @@
-## X-LDSC (stratified trans-ethnic LD score regression)
+## S-LDXR (stratified trans-ethnic genetic correlation)
 
-X-LDSC is a method to stratify squared trans-ethnic genetic correlation
+S-LDXR is a method to stratify squared trans-ethnic genetic correlation
 by genomic annotations from GWAS summary statistics. Please see
 [![](https://img.shields.io/badge/docs-latest-blue.svg)](https://huwenboshi.github.io/s-ldxr)
 for details.
