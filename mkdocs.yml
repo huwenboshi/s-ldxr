@@ -1,11 +1,11 @@
 # Project information
-site_name: 'X-LDSC'
+site_name: 'S-LDXR'
 site_description: 'Stratifying squared trans-ethnic genetic correlation'
 site_author: 'Huwenbo Shi'
-site_url: 'https://huwenboshi.github.io/x-ldsc'
+site_url: 'https://huwenboshi.github.io/s-ldxr'
 
 # Repository
-repo_url: 'https://github.com/huwenboshi/x-ldsc'
+repo_url: 'https://github.com/huwenboshi/s-ldxr'
 
 # Copyright
 copyright: 'Copyright &copy; 2019 - 2024 Huwenbo Shi'
