@@ -1,0 +1,34 @@
+[INFO] Command started at: Wed, 20 Nov 2019 08:29:37
+[INFO] Command issued:
+    ../../s-ldxr.py \
+        --min-maf 0.05 \
+        --ref-ld-chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_baseline/ldscore_allelic/EAS_EUR_allelic_chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_gerp/ldscore_allelic/EAS_EUR_allelic_chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_fst/ldscore_allelic/EAS_EUR_allelic_chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_recomb/ldscore_allelic/EAS_EUR_allelic_chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_diversity/ldscore_allelic/EAS_EUR_allelic_chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_avglld/ldscore_allelic/EAS_EUR_allelic_chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_bstat/ldscore_allelic/EAS_EUR_allelic_chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_alleleage/ldscore_allelic/EAS_EUR_allelic_chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_cpg/ldscore_allelic/EAS_EUR_allelic_chr \
+        --frqfile /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/haplotype/plink/relcutoff_35k/EAS_ref/EAS_ref. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/haplotype/plink/relcutoff_35k/EUR_ref/EUR_ref. \
+        --apply-shrinkage 0.5 \
+        --annot /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_baseline/annot_files/baseline. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_gerp/annot_files/gerp. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_fst/annot_files/fst. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_recomb/annot_files/recomb. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_diversity/annot_files/diversity. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_avglld/annot_files/avglld. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_bstat/annot_files/bstat. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_alleleage/annot_files/alleleage. /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_cpg/annot_files/cpg. \
+        --use-chrom 1 3 \
+        --gcor ../data/sim1_pop1.sumstats.gz ../data/sim1_pop2.sumstats.gz \
+        --save-pseudo-coef  \
+        --n-blocks 50 \
+        --w-ld-chr /n/groups/price/huwenbo/PART_TE_GCOV/simulation/data/annotation_35k/annot_weight_5pct/ldscore_standardized/EAS_EUR_standardized_chr \
+        --out ./sim1.txt
+[INFO] Loaded 1699467 SNPs from the GWAS summary data file
+[INFO] Loaded 1913599 SNPs from the GWAS summary data file
+[INFO] 1699467 SNPs left after filtering
+[INFO] 1913599 SNPs left after filtering
+[INFO] Loaded LD scores for 1323218 SNPs 62 annotations
+[INFO] Loaded annotations: 2526416 SNPs, 62 annotations
+[INFO] Loaded LD scores for regression SNPs
+[INFO] Loaded allele frequency files
+[INFO] After intersection, 1014252 SNPs are left for regression
+[INFO] Obtained coefficients
+[INFO] Saved pseudo coefficients
+[INFO] hsq1: 0.20711390017 0.022906535955
+[INFO] intercept hsq1: 1.00865101814 0.0159668549895
+[INFO] hsq2: 0.221091472416 0.0236864998574
+[INFO] intercept hsq2: 1.01409339905 0.0201333817095
+[INFO] gcov: 0.151080780588 0.0135412174491
+[INFO] intercept gcov: 0.0 0.0
+[INFO] gcor: 0.706022620201 0.0864296785762
+[INFO] gcorsq: 0.502804644146 0.12190108079
+[INFO] Command finished at: Wed, 20 Nov 2019 08:32:56

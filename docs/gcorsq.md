@@ -28,6 +28,8 @@ python <software directory>/s-ldxr.py \
     --out TRAIT_EAS_EUR.txt
 ```
 
+This command typically takes 10 to 15 minutes to run on a stand alone computer.
+
 Here are the meanings of the flags:
 
 * `--gcor` specifies the summary stats files. This flag takes 2 arguments -
@@ -99,6 +101,8 @@ python <software directory>/cont_annot_gcor.py \
     --out TRAIT_EAS_EUR_contannot.txt
 ```
 
+This step typically takes 2 to 5 minutes to run on a stand alone computer.
+
 Here are the meanings of the flags.
 
 * `--coef` specifies the output from the previous step. The jackknife pseudo
@@ -158,6 +162,8 @@ python <software directory>/s-ldxr.py \
     --out ./TRAIT_EAS_EUR_step1.txt
 ```
 
+This command typically takes 2 to 5 minutes to run on a stand alone computer.
+
 <div style="background-color:rgba(230, 230, 250, 1.0);">
 <b>Note</b>: It is important to always include the base (not
 baseline) annotation.
@@ -182,6 +188,8 @@ python <software directory>/pred_binannot_from_contannot.py \
     --apply-shrinkage 0.5 \
     --out ./TRAIT_EAS_EUR_step2.txt
 ```
+
+This command typically takes 2 to 5 minutes to run on a stand alone computer.
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
 <b>Note</b>: It is important to always include the base (not
