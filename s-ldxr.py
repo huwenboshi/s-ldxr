@@ -29,7 +29,7 @@ def main():
             argmap['add-intercept'], argmap['save-pseudo-coef'],
             argmap['use-chrom'], argmap['use-robust-regression'],
             argmap['n-blocks'], argmap['min-maf'], argmap['bound'],
-            argmap['apply-shrinkage'])
+            argmap['apply-shrinkage'], argmap['use-jackknife-bias-adj'])
 
     else:
         logging.error('Invalid command line option.')
@@ -178,6 +178,10 @@ def get_command_line():
     parser.add_argument('--apply-shrinkage', dest='apply-shrinkage',
         default=0.5, required=False, type=float,
         help='Apply shrinkage on the estimates')
+
+    parser.add_argument('--use-jackknife-bias-adj',
+        dest='use-jackknife-bias-adj', default=False, required=False,
+        action='store_true', help='Use jackknife bias adjustment')
 
     ########## output  ##########
 

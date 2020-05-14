@@ -66,10 +66,12 @@ def main():
 
     # get sqaured genetic correlation estimates
     gcorsq, gcorsq_se, ps_gcorsq = get_gcorsq(hsq1, ps_hsq1, hsq2, ps_hsq2,
-        gcov, ps_gcov, annot_nsnp, False, argmap['apply-shrinkage'])
+        gcov, ps_gcov, annot_nsnp, False, argmap['apply-shrinkage'],
+        argmap['use-jackknife-bias-adj'])
 
     # estimate enrichment of squared genetic correlation
-    gcorsq_en, gcorsq_en_se = get_gcorsq_enrichment(gcorsq, ps_gcorsq)
+    gcorsq_en, gcorsq_en_se = get_gcorsq_enrichment(gcorsq,
+        gcorsq_se, ps_gcorsq, argmap['use-jackknife-bias-adj'])
     tstat = np.fabs((gcorsq_en-1.0) / (gcorsq_en_se+1e-16))
     gcorsq_en_pval = (1.0-scipy.stats.t.cdf(tstat, nblock-1))*2.0
 
@@ -265,6 +267,10 @@ def get_command_line():
     parser.add_argument('--apply-shrinkage', dest='apply-shrinkage',
         default=0.5, required=False, type=float,
         help='Apply shrinkage on the estimates')
+
+    parser.add_argument('--use-jackknife-bias-adj',
+        dest='use-jackknife-bias-adj', default=False, required=False,
+        action='store_true', help='Use jackknife bias adjustment')
 
     return parser.parse_args()
 

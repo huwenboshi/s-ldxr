@@ -88,7 +88,8 @@ def regression(x, y, nblock, use_intercept):
 
     # get se
     nblock = np.float32(nblock)
-    se = np.sqrt((nblock-1)*np.mean(np.square(ps_coef-coef), axis=0))
+    mean_ps_coef = np.mean(ps_coef, axis=0)
+    se = np.sqrt((nblock-1)*np.mean(np.square(ps_coef-mean_ps_coef), axis=0))
 
     return coef, se, ps_coef
 
@@ -142,7 +143,8 @@ def robust_regression(x, y, nblock, use_intercept):
         ps_coef[i,:] = coef_block
 
     # compute standard error
-    se = np.sum(np.square(ps_coef-coef), axis=0)
+    mean_ps_coef = np.mean(ps_coef, axis=0)
+    se = np.sum(np.square(ps_coef-mean_ps_coef), axis=0)
     se = np.sqrt(se*np.float32(nblock-1)/np.float32(nblock))
 
     return coef, se, ps_coef
@@ -236,9 +238,9 @@ def get_sum(annot_mat, coef, ps_coef):
     annot_cov = np.dot(annot_mat.T, annot_mat)    
     annot_est = np.dot(annot_cov, coef[:-1])
 
-    annot_cov = np.float64(annot_cov)
-    annot_est = np.float64(annot_est)
-
+    annot_cov = annot_cov.astype(np.float64)
+    annot_est = annot_est.astype(np.float64)
+    
     # get standard error
     nblock = ps_coef.shape[0]
     all_ps_annot_est = np.zeros((nblock, nannot), dtype=np.float64)
@@ -247,11 +249,12 @@ def get_sum(annot_mat, coef, ps_coef):
    
     # get se
     nblock = np.float64(nblock)
-    diffsq = np.square(all_ps_annot_est-annot_est)
+    mean_all_ps_annot_est = np.mean(all_ps_annot_est, axis=0)
+    diffsq = np.square(all_ps_annot_est-mean_all_ps_annot_est)
     annot_est_se = np.sqrt((nblock-1)*np.mean(diffsq,axis=0))
 
-    return np.float64(annot_est), np.float64(annot_est_se), \
-        np.float64(all_ps_annot_est)
+    return annot_est.astype(np.float64), annot_est_se.astype(np.float64), \
+        all_ps_annot_est.astype(np.float64)
 
 # get jackknife covariance of heritability estimates
 def get_jkcov(est1, ps_est1, est2, ps_est2):
@@ -261,9 +264,11 @@ def get_jkcov(est1, ps_est1, est2, ps_est2):
     """
 
     nblock = ps_est1.shape[0]
-    jkcov = np.mean((ps_est1-est1)*(ps_est2-est2), axis=0)
+    mean_ps_est1 = np.mean(ps_est1, axis=0)
+    mean_ps_est2 = np.mean(ps_est2, axis=0)
+    jkcov = np.mean((ps_est1-mean_ps_est1)*(ps_est2-mean_ps_est2), axis=0)
     jkcov *= (np.float64(nblock)-1.0)
-    jkcov = np.float64(jkcov)
+    jkcov = jkcov.astype(np.float64)
 
     return jkcov
 
@@ -293,12 +298,13 @@ def get_enrichment(est, ps_est, annot_nsnp):
 
     # get se
     nblock = np.float64(nblock)
-    diffsq = np.square(all_ps_annot_en_adj-annot_en_adj)
+    mean_all_ps_annot_en_adj = np.mean(all_ps_annot_en_adj, axis=0)
+    diffsq = np.square(all_ps_annot_en_adj-mean_all_ps_annot_en_adj)
     annot_en_adj_se = np.sqrt((nblock-1)*np.mean(diffsq, axis=0))
 
     return annot_en_adj, annot_en_adj_se, all_ps_annot_en_adj
 
-def get_gcorsq_enrichment(gcorsq, ps_gcorsq):
+def get_gcorsq_enrichment(gcorsq, gcorsq_se, ps_gcorsq, use_jk_adj):
     """
     Estimate enrichment of genetic correlation
     """
@@ -309,15 +315,49 @@ def get_gcorsq_enrichment(gcorsq, ps_gcorsq):
 
     # get all-sample estimate
     all_gcorsq_en = gcorsq/gcorsq[0]
-    
+   
+    # get variance of bottom
+    gcorsq_var = np.square(gcorsq_se)
+    var_btm = gcorsq_var[0]
+
+    # get covariance of top and bottom
+    nblock, nannot = ps_gcorsq.shape
+    cov_top_btm_tmp = np.zeros((nblock, nannot))
+    for i in range(nannot):
+        cov_top_btm_tmp[:,i] = (ps_gcorsq[:,i]-np.mean(ps_gcorsq[:,i])) * \
+            (ps_gcorsq[:,0]-np.mean(ps_gcorsq[:,0]))
+    cov_top_btm = np.mean(cov_top_btm_tmp, axis=0)
+    cov_top_btm *= (np.float64(nblock)-1.0)
+  
+    # adjust for bias
+    if use_jk_adj == False:
+        all_gcorsq_en_adj = (all_gcorsq_en + cov_top_btm/gcorsq[0]) / \
+            (1.0 + var_btm/gcorsq[0])
+    else:
+        # no adjustment if using jackknife bias correction
+        # pseudo estimate likely not reliable
+        all_gcorsq_en_adj = all_gcorsq_en.copy()
+
     # get jackknife pseudo estimates
     all_ps_gcorsq_en = np.zeros((nblock, nannot), dtype=np.float64)
+    factor = np.float64(nblock)/(np.float64(nblock)-1.0)
     for i in xrange(nblock):
-        all_ps_gcorsq_en[i,:] = ps_gcorsq[i,:]/ps_gcorsq[i,0]
+        annot_est = ps_gcorsq[i,:]/ps_gcorsq[i,0]
+       
+        # adjust for bias if using analytical bias correction
+        if use_jk_adj == False:
+            cov_top_btm_tmp = factor*cov_top_btm
+            var_btm_tmp = factor*var_btm
+            anont_est = (annot_est + cov_top_btm_tmp/ps_gcorsq[i,0]) / \
+                (1.0 + var_btm_tmp/ps_gcorsq[i,0])
+            all_ps_gcorsq_en[i,:] = annot_est
+        else:
+            all_ps_gcorsq_en[i,:] = annot_est
 
     # get se
     nblock = np.float64(nblock)
-    diffsq = np.square(all_ps_gcorsq_en-all_gcorsq_en)
+    mean_all_ps_gcorsq_en = np.mean(all_ps_gcorsq_en, axis=0)
+    diffsq = np.square(all_ps_gcorsq_en-mean_all_ps_gcorsq_en)
     all_gcorsq_en_se = np.sqrt((nblock-1)*np.mean(diffsq, axis=0))
 
     return all_gcorsq_en, all_gcorsq_en_se
@@ -336,7 +376,7 @@ def get_gcor(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, ps_gcov, bound):
 
     # get standard error
     nblock = ps_hsq1.shape[0]
-    annot_est_se = np.zeros(nannot)
+    all_ps_annot_est = np.zeros((nblock, nannot))
     for j in range(nblock):
         ps_annot_est = np.zeros(nannot, dtype=np.float32)
         idx = (ps_hsq1[j,:]>0) & (ps_hsq2[j,:]>0)
@@ -346,10 +386,13 @@ def get_gcor(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, ps_gcov, bound):
         if bound == True:
             ps_annot_est[ps_annot_est>1.0] = 1.0
             ps_annot_est[ps_annot_est<-1.0] = -1.0
-        annot_est_se += np.square(ps_annot_est-annot_est)
-    
-    annot_est_se *= (np.float32(nblock)-1.0)/np.float32(nblock)
-    annot_est_se = np.sqrt(annot_est_se)
+        all_ps_annot_est[j,:] = ps_annot_est
+
+    # get se
+    nblock = np.float64(nblock)
+    mean_all_ps_annot_est = np.mean(all_ps_annot_est, axis=0)
+    diffsq = np.square(all_ps_annot_est-mean_all_ps_annot_est)
+    annot_est_se = np.sqrt((nblock-1)*np.mean(diffsq, axis=0))
 
     return annot_est, annot_est_se
 
@@ -379,7 +422,7 @@ def get_shrink_factor(est, est_var, annot_nsnp, shrinkage):
     return factor
 
 def get_gcorsq(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, ps_gcov, annot_nsnp,
-    bound, shrinkage):
+    bound, shrinkage, use_jk_adj):
 
     """
     Estimate squared genetic correlation
@@ -408,8 +451,8 @@ def get_gcorsq(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, ps_gcov, annot_nsnp,
         annot_nsnp, factor)
 
     # get estimates
-    gcov_var_shrink = (nblock-1)*np.mean(np.square(ps_gcov_shrink - \
-        gcov_shrink),axis=0)
+    gcov_var_shrink = get_jkcov(gcov_shrink, ps_gcov_shrink,
+        gcov_shrink, ps_gcov_shrink)
     hsq_jkcov_shrink = get_jkcov(hsq1_shrink, ps_hsq1_shrink,
         hsq2_shrink, ps_hsq2_shrink)
     top = np.square(gcov_shrink) - gcov_var_shrink
@@ -421,6 +464,14 @@ def get_gcorsq(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, ps_gcov, annot_nsnp,
     ps_top = np.square(ps_gcov_shrink) - factor*gcov_var_shrink
     ps_btm = ps_hsq1_shrink*ps_hsq2_shrink - factor*hsq_jkcov_shrink
 
+    # get variance of bottom covariance of top and bottom
+    var_btm = get_jkcov(btm, ps_btm, btm, ps_btm)
+    cov_top_btm = get_jkcov(top, ps_top, btm, ps_btm)
+    
+    # adjust for bias
+    if use_jk_adj == False:
+        annot_est_adj = (annot_est + cov_top_btm/btm) / (1.0 + var_btm/btm)
+
     # apply bound
     if bound == True:
         annot_est[annot_est>1.0] = 1.0
@@ -428,6 +479,7 @@ def get_gcorsq(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, ps_gcov, annot_nsnp,
 
     # get pseudo values
     all_ps_annot_est = np.zeros((nblock, nannot), dtype=np.float64)
+    factor = np.float64(nblock)/(np.float64(nblock)-1.0)
     for j in range(nblock):
         
         # get estimate
@@ -439,23 +491,33 @@ def get_gcorsq(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, ps_gcov, annot_nsnp,
         if bound == True:
             ps_annot_est[ps_annot_est>1.0] = 1.0
             ps_annot_est[ps_annot_est<0.0] = 0.0
-   
+ 
+        # adjust for bias
+        if use_jk_adj == False:
+            var_btm_tmp = factor*var_btm
+            cov_top_btm_tmp = factor*cov_top_btm
+            ps_annot_est = (ps_annot_est + cov_top_btm_tmp/btmj) / \
+                (1.0 + var_btm_tmp/btmj)
+
         # store pseudo estimate
         all_ps_annot_est[j,:] = ps_annot_est
 
     # adjust for bias using jackknife
-    jknife_mean = np.mean(all_ps_annot_est, axis=0)
-    bias = (nblock - 1) * (jknife_mean - annot_est)
-    annot_est_adj = annot_est - bias
-    factor = np.float64(nblock)/(np.float64(nblock)-1.0)
-    all_ps_annot_est_adj = all_ps_annot_est - factor*bias
+    if use_jk_adj == True:
+        jknife_mean = np.mean(all_ps_annot_est, axis=0)
+        bias = (nblock - 1) * (jknife_mean - annot_est)
+        annot_est_adj = annot_est - bias
+        factor = np.float64(nblock)/(np.float64(nblock)-1.0)
+        all_ps_annot_est = all_ps_annot_est - factor*bias
 
     # get se
-    diffsq = np.square(all_ps_annot_est_adj-annot_est_adj)
+    mean_all_ps_annot_est = np.mean(all_ps_annot_est, axis=0)
+    diffsq = np.square(all_ps_annot_est-mean_all_ps_annot_est)
     annot_est_adj_se = np.sqrt((nblock-1)*np.mean(diffsq, axis=0))
 
-    return np.float64(annot_est_adj), np.float64(annot_est_adj_se), \
-        np.float64(all_ps_annot_est_adj)
+    return annot_est_adj.astype(np.float64), \
+           annot_est_adj_se.astype(np.float64), \
+           all_ps_annot_est.astype(np.float64)
 
 def get_gcovsq_diff(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, gcov_se,
     ps_gcov, gcorsq, ps_gcorsq):
@@ -476,6 +538,9 @@ def get_gcovsq_diff(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, gcov_se,
     btm = gcorsq[0]*(hsq1*hsq2 - hsq_jkcov)
     annot_est = top - btm
 
+    # base should be exactly 0
+    annot_est[0] = 0.0
+
     # get pseudo values
     all_ps_annot_est = np.zeros((nblock, nannot), dtype=np.float64)
     for j in range(nblock):
@@ -490,11 +555,13 @@ def get_gcovsq_diff(hsq1, ps_hsq1, hsq2, ps_hsq2, gcov, gcov_se,
         btm = gcorsqj[0]*(hsq1j*hsq2j - factor*hsq_jkcov)
 
         ps_annot_est = top - btm
+        ps_annot_est[0] = 0.0
         all_ps_annot_est[j,:] = ps_annot_est
 
     # get se
     nblock = np.float64(nblock)
-    diffsq = np.square(all_ps_annot_est-annot_est)
+    mean_all_ps_annot_est = np.mean(all_ps_annot_est, axis=0)
+    diffsq = np.square(all_ps_annot_est-mean_all_ps_annot_est)
     annot_est_se = np.sqrt((nblock-1)*np.mean(diffsq, axis=0))
 
     return annot_est, annot_est_se, all_ps_annot_est
@@ -540,13 +607,14 @@ def load_frqfile(frqfile_fnm, start_chrom, stop_chrom):
     
     all_frq = pd.concat(all_frq, axis=0, ignore_index=True)
     sigma = np.sqrt(2.0*all_frq['MAF']*(1.0-all_frq['MAF']))
-    all_frq['SIGMA'] = sigma.astype(np.float32)
+    all_frq['SIGMA'] = sigma.astype(np.float64)
 
     return all_frq
 
 def estimate_gcor(sumstats_fnm, score_fnm, weight_fnm, annot_fnm,
     frqfile_fnm, out_fnm, add_intercept, save_ps_coef, use_chrom,
-    use_robust_regression, nblk_jk, min_maf, bound, apply_shrinkage):
+    use_robust_regression, nblk_jk, min_maf, bound, apply_shrinkage,
+    use_jk_adj):
    
     """
     Estimate coefficients, enrichments, and squared genetic correlations
@@ -662,7 +730,7 @@ def estimate_gcor(sumstats_fnm, score_fnm, weight_fnm, annot_fnm,
     hsq1, hsq1_se, ps_hsq1 = get_sum(annot_mat, tau1, ps_tau1)
     hsq2, hsq2_se, ps_hsq2 = get_sum(annot_mat, tau2, ps_tau2)
     gcov, gcov_se, ps_gcov = get_sum(annot_mat, theta, ps_theta)
-    
+   
     # get enrichment estimate
     annot_nsnp, annot_std = get_annot_sumstat(annot_mat)
     hsq1_en,hsq1_en_se,ps_hsq1_en = get_enrichment(hsq1, ps_hsq1, annot_nsnp)
@@ -674,10 +742,11 @@ def estimate_gcor(sumstats_fnm, score_fnm, weight_fnm, annot_fnm,
 
     # get sqaured genetic correlation estimates
     gcorsq, gcorsq_se, ps_gcorsq = get_gcorsq(hsq1, ps_hsq1, hsq2, ps_hsq2,
-        gcov, ps_gcov, annot_nsnp, bound, apply_shrinkage)
+        gcov, ps_gcov, annot_nsnp, bound, apply_shrinkage, use_jk_adj)
 
     # estimate enrichment of squared genetic correlation
-    gcorsq_en, gcorsq_en_se = get_gcorsq_enrichment(gcorsq, ps_gcorsq)
+    gcorsq_en, gcorsq_en_se = get_gcorsq_enrichment(gcorsq,
+        gcorsq_se, ps_gcorsq, use_jk_adj)
     tstat = np.fabs((gcorsq_en-1.0) / (gcorsq_en_se+1e-16))
     gcorsq_en_pval = (1.0-scipy.stats.t.cdf(tstat, nblk_jk-1))*2.0
 
@@ -698,6 +767,7 @@ def estimate_gcor(sumstats_fnm, score_fnm, weight_fnm, annot_fnm,
     out_df['HSQ1'] = hsq1; out_df['HSQ1_SE'] = hsq1_se
     out_df['HSQ2'] = hsq2; out_df['HSQ2_SE'] = hsq2_se
     out_df['GCOV'] = gcov; out_df['GCOV_SE'] = gcov_se
+    out_df['GCOR'] = gcor; out_df['GCOR_SE'] = gcor_se
     out_df['GCORSQ'] = gcorsq; out_df['GCORSQ_SE'] = gcorsq_se
     out_df['HSQ1_ENRICHMENT'] = hsq1_en
     out_df['HSQ1_ENRICHMENT_SE'] = hsq1_en_se
