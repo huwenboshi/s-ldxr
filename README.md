@@ -13,8 +13,11 @@ for details.
 
 ### Releases
 
+* [version 0.3-beta](https://github.com/huwenboshi/s-ldxr/archive/v0.3-beta.zip)
 * [version 0.2-beta](https://github.com/huwenboshi/s-ldxr/archive/v0.2-beta.zip)
+* [version 0.1-beta](https://github.com/huwenboshi/s-ldxr/archive/v0.1-beta.zip)
 
 ### Contact
 
 * **Huwenbo Shi**: hshi_AT_hsph.harvard.edu
+* **Alkes Price**: aprice_AT_hsph.harvard.edu
