@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Stratifying squared trans-ethnic genetic correlation">
+        <meta name="description" content="Estimating enrichment of stratified squared trans-ethnic genetic correlation">
         <meta name="author" content="Huwenbo Shi">
         <link rel="canonical" href="https://huwenboshi.github.io/s-ldxr/">
         <link rel="shortcut icon" href="./img/favicon.ico">
@@ -65,11 +65,11 @@
                         <ul class="dropdown-menu">
                             
 <li >
-    <a href="ldscore/">LD score</a>
+    <a href="ldscore/">Estimating LD score</a>
 </li>
                             
 <li >
-    <a href="gcorsq/">Squared trans-ethnic genetic correlation</a>
+    <a href="gcorsq/">Estimating enrichment</a>
 </li>
                         </ul>
                     </li>
@@ -109,29 +109,35 @@
     <ul class="nav bs-sidenav">
         <li class="main active"><a href="#s-ldxr">S-LDXR</a></li>
             <li><a href="#software-requirement">Software requirement</a></li>
+            <li><a href="#annotations-and-ld-scores">Annotations and LD scores</a></li>
             <li><a href="#contact">Contact</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
 <h1 id="s-ldxr">S-LDXR</h1>
-<p>S-LDXR (stratified trans-ethnic genetic correlation) is a software package
-for stratifying squared trans-ethnic genetic correlation from GWAS summary
-statistics. The latest version is
-<a href="https://github.com/huwenboshi/x-ldsc/archive/v0.1-beta.zip">version 0.1-beta</a>.
-Baseline-LD-X annotations and LD scores can be downloaded <a href="https://data.broadinstitute.org/alkesgroup/LDSCORE/baseline-LD-X/">here</a>.</p>
+<p>S-LDXR is a software for estimating enrichment of stratified squared
+trans-ethnic genetic correlation across genomic annotations from GWAS summary
+statistics data. The latest version is
+<a href="https://github.com/huwenboshi/s-ldxr/archive/v0.3-beta.zip">version 0.3-beta</a>.</p>
 <h2 id="software-requirement">Software requirement</h2>
+<p>The software was developed and tested with the following packages.</p>
 <ul>
-<li><a href="https://www.python.org/download/releases/2.7/">Python 2.7</a> (sorry!)</li>
-<li><a href="http://www.numpy.org/">NumPy 1.15+</a> </li>
-<li><a href="http://pandas.pydata.org/">Pandas 0.23.4+</a></li>
-<li><a href="https://github.com/MicrosoftGenomics/PySnpTools">PySnpTools 0.3+</a></li>
-<li><a href="https://www.scipy.org/">SciPy 1.1.0+</a></li>
-<li><a href="https://www.statsmodels.org/0.9.0/index.html">StatsModels 0.9.0+</a></li>
+<li><a href="https://www.python.org/download/releases/2.7/">Python 2.7.12</a></li>
+<li><a href="http://www.numpy.org/">NumPy 1.15.1</a> </li>
+<li><a href="http://pandas.pydata.org/">Pandas 0.23.4</a></li>
+<li><a href="https://github.com/MicrosoftGenomics/PySnpTools">PySnpTools 0.3</a></li>
+<li><a href="https://www.scipy.org/">SciPy 1.1.0</a></li>
+<li><a href="https://www.statsmodels.org/0.9.0/index.html">StatsModels 0.9.0</a></li>
 </ul>
+<h2 id="annotations-and-ld-scores">Annotations and LD scores</h2>
+<p>Annotation files and LD score files for the baseline-LD-X model annotations
+and several other annotations can be downloaded
+<a href="https://data.broadinstitute.org/alkesgroup/LDSCORE/baseline-LD-X/">here</a>.</p>
 <h2 id="contact">Contact</h2>
 <ul>
 <li><strong>Huwenbo Shi</strong>: hshi_AT_hsph.harvard.edu</li>
+<li><strong>Alkes Price</strong>: aprice_AT_hsph.harvard.edu</li>
 </ul></div>
         </div>
 
@@ -174,5 +180,5 @@ Baseline-LD-X annotations and LD scores can be downloaded <a href="https://data.
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2019-11-20 13:26:24
+Build Date UTC : 2020-05-15 15:01:21
 -->

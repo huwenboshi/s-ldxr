@@ -1,6 +1,6 @@
 # Project information
 site_name: 'S-LDXR'
-site_description: 'Stratifying squared trans-ethnic genetic correlation'
+site_description: 'Estimating enrichment of stratified squared trans-ethnic genetic correlation'
 site_author: 'Huwenbo Shi'
 site_url: 'https://huwenboshi.github.io/s-ldxr'
 
@@ -18,8 +18,8 @@ pages:
     - Home: 'index.md'
     - Input Format: 'input_format.md'
     - Estimation:
-        - 'LD score': 'ldscore.md'
-        - 'Squared trans-ethnic genetic correlation': 'gcorsq.md'
+        - 'Estimating LD score': 'ldscore.md'
+        - 'Estimating enrichment': 'gcorsq.md'
     - FAQ: 'faq.md'
 
 # Options

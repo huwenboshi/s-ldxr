@@ -27,6 +27,11 @@ files are sorted by their chromosomes and base pairs. All SNPs with either
 duplicate ID or position will be removed before any analysis.
 </div>
 
+<div style="background-color:rgba(240, 128, 128, 0.2);">
+( <b>Note</b>: It is important that the alleles of each SNP in the GWAS
+summary statistics file are consistent across the two populations.)
+</div>
+
 ## Reference panel
 
 Reference panels should be in [PLINK format](https://www.cog-genomics.org/plink/2.0/input#bed)

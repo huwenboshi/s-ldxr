@@ -1,10 +1,9 @@
 # S-LDXR
 
-S-LDXR (stratified trans-ethnic genetic correlation) is a software package
-for estimating enrichment of squared trans-ethnic genetic correlation from
-GWAS summary statistics. The latest version is
+S-LDXR is a software for estimating enrichment of stratified squared
+trans-ethnic genetic correlation across genomic annotations from GWAS summary
+statistics data. The latest version is
 [version 0.3-beta](https://github.com/huwenboshi/s-ldxr/archive/v0.3-beta.zip).
-Baseline-LD-X annotations and LD scores can be downloaded [here](https://data.broadinstitute.org/alkesgroup/LDSCORE/baseline-LD-X/).
 
 ## Software requirement
 
@@ -16,6 +15,13 @@ The software was developed and tested with the following packages.
 * [PySnpTools 0.3](https://github.com/MicrosoftGenomics/PySnpTools)
 * [SciPy 1.1.0](https://www.scipy.org/)
 * [StatsModels 0.9.0](https://www.statsmodels.org/0.9.0/index.html)
+
+## Annotations and LD scores
+
+Annotation files and LD score files for the baseline-LD-X model annotations
+and several other annotations can be downloaded
+[here](https://data.broadinstitute.org/alkesgroup/LDSCORE/baseline-LD-X/).
+
 
 ## Contact
 
