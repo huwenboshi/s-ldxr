@@ -458,13 +458,23 @@ of jackknife blocks minus one, where the test statistic is
 \( { {\hat{\lambda}^2(C)} \over {s.e.(\hat{\lambda}^2(C)) } }\).</p>
 </li>
 <li>
-<p>GCOVSQ_DIFF</p>
+<p><code>GCOVSQ_DIFF</code> estimated
+\( \hat{D}^2(C) = \hat{\rho}^2_g(C) - \hat{r}^2_g \hat{h}^2_g(C) \hat{h}^2_g(C) \),
+the difference between stratified squared trans-ethnic genetic covariance
+of annotation \( C \), and \( \hat{r}^2_g \hat{h}^2_g(C) \hat{h}^2_g(C) \),
+the expected squared trans-ethnic genetic covariance based on genome-wide
+squared trans-ethnic genetic correlation and heritabilities.</p>
 </li>
 <li>
-<p>GCOVSQ_DIFF_SE</p>
+<p><code>GCOVSQ_DIFF_SE</code> standard error for the estimated \( \hat{D}^2(C) \)</p>
 </li>
 <li>
-<p>GCOVSQ_DIFF_P</p>
+<p><code>GCOVSQ_DIFF_P</code> p-value for testing whether \( \hat{D}^2(C) \) is different
+from 0, obtained from a t distribution with degree of freedom equal to the number
+of jackknife blocks minus one, where the test statistic is
+\( { {\hat{D}^2(C)} \over {s.e.(\hat{D}^2(C)) } }\). This test is equivalent
+to testing whether \( \lambda^2(C) \) is different from 1. But the p-value
+is more well-calibrated.</p>
 </li>
 </ol></div>
             </div>
