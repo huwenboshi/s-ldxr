@@ -105,6 +105,14 @@
             
             <li class="nav-item" data-level="1"><a href="#estimating-ld-scores" class="nav-link">Estimating LD scores</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#running-s-ldxr-to-estimate-ld-scores" class="nav-link">Running S-LDXR to estimate LD scores</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#output-of-s-ldxr" class="nav-link">Output of S-LDXR</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -114,7 +122,7 @@
 
 <h1 id="estimating-ld-scores">Estimating LD scores</h1>
 <p>This page describes how to estimate LD scores</p>
-<h3 id="the-command">The command</h3>
+<h2 id="running-s-ldxr-to-estimate-ld-scores">Running S-LDXR to estimate LD scores</h2>
 <p>S-LDXR estimates LD scores with the following command.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">for</span> chrom in <span class="k">$(</span>seq <span class="m">22</span><span class="k">)</span>
 <span class="k">do</span>
@@ -166,8 +174,8 @@ format, and have the same set of SNPs.</p>
 <p><code>--out</code> specifies prefix of the output files.</p>
 </li>
 </ul>
-<h3 id="the-output">The output</h3>
-<p>After executing the command above, 4 files will be created for each
+<h2 id="output-of-s-ldxr">Output of S-LDXR</h2>
+<p>After executing the command above, S-LDXR creates 4 files for each
 chromosome (i.e. 88 files for all 22 chromosomes):</p>
 <ul>
 <li>
