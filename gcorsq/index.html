@@ -105,6 +105,26 @@
             
             <li class="nav-item" data-level="1"><a href="#estimating-enrichment-of-stratified-squared-trans-ethnic-genetic-correlation" class="nav-link">Estimating enrichment of stratified squared trans-ethnic genetic correlation</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#typical-command" class="nav-link">Typical command</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#output" class="nav-link">Output</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#continuous-valued-annotations" class="nav-link">Continuous-valued annotations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#expected-lambda2c-of-binary-annotations-from-continuous-valued-annotations" class="nav-link">Expected \(\lambda^2(C)\) of binary annotations from continuous-valued annotations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#interpreting-the-output" class="nav-link">Interpreting the output</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -118,9 +138,8 @@ trans-ethnic genetic correlation,
 \(\lambda^2(C) ={ {r^2_g(C)} \over {r^2_g} }\), the ratio between squared
 trans-ethnic genetic correlation of annotation \( C \) and genome-wide
 squared trans-ethnic genetic correlation.</p>
-<h3 id="typical-command">Typical command</h3>
-<p>S-LDXR estimates \(r^2_{g}(C)\) and \(\lambda^2(C)\) with the
-following command.</p>
+<h2 id="typical-command">Typical command</h2>
+<p>S-LDXR estimates \(\lambda^2(C)\) with the following command.</p>
 <div class="codehilite"><pre><span></span><code><span class="err">python &lt;software directory&gt;/s-ldxr.py \</span>
 <span class="err">    --gcor &lt;summary stats directory for EAS&gt;/EAS_sumstats.gz \</span>
 <span class="err">           &lt;summary stats directory for EUR&gt;/EUR_sumstats.gz \</span>
@@ -183,7 +202,7 @@ the coefficients will be saved. This flag is optional.</p>
 <p><code>--out</code> specifies the output file name.</p>
 </li>
 </ul>
-<h3 id="output">Output</h3>
+<h2 id="output">Output</h2>
 <p>After executing the above command, 5 files will be generated.</p>
 <ul>
 <li>
@@ -210,7 +229,7 @@ coefficients for population 2.</p>
 --save-pseudo-coef flag is specified.
 </div>
 
-<h3 id="continuous-valued-annotations">Continuous-valued annotations</h3>
+<h2 id="continuous-valued-annotations">Continuous-valued annotations</h2>
 <p>The following command estimates enrichment of stratified squared trans-ethnic
 genetic correlation of quintiles of continuous-valued annotations.</p>
 <div class="codehilite"><pre><span></span><code><span class="err">python &lt;software directory&gt;/cont_annot_gcor.py \</span>
@@ -271,7 +290,7 @@ of shrinkage.</p>
 <p><code>TRAIT_EAS_EUR_contannot.txt.log</code> is the log file for debugging purpose.</p>
 </li>
 </ul>
-<h3 id="expected-r2_gc-and-lambda2c-from-continuous-valued-annotations">Expected \(r^2_g(C)\) and \(\lambda^2(C)\) from continuous-valued annotations</h3>
+<h2 id="expected-lambda2c-of-binary-annotations-from-continuous-valued-annotations">Expected \(\lambda^2(C)\) of binary annotations from continuous-valued annotations</h2>
 <p>Estimating expected \(r^2_g(C)\) and \(\lambda^2(C)\) from
 continuous-valued annotations requires two steps.</p>
 <p>The first step gets the coefficients (\(\tau_{1C}\), \(\tau_{2C}\),
@@ -327,7 +346,7 @@ baseline) annotation.
 
 <p>The output is the same as that of the command for continuous-valued
 annotations.</p>
-<h3 id="interpreting-the-output">Interpreting the output</h3>
+<h2 id="interpreting-the-output">Interpreting the output</h2>
 <p>The output files of S-LDXR contain the following columns.</p>
 <ol>
 <li>
