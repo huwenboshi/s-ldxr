@@ -6,7 +6,7 @@ This page describes how to estimate LD scores
 
 S-LDXR estimates LD scores with the following command.
 
-```
+```shell
 for chrom in $(seq 22)
 do
     python <software directory>/s-ldxr.py \

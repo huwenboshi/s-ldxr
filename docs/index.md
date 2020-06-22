@@ -16,12 +16,12 @@ The software was developed and tested with the following packages.
 * [SciPy 1.1.0](https://www.scipy.org/)
 * [StatsModels 0.9.0](https://www.statsmodels.org/0.9.0/index.html)
 
-## Annotations and LD scores
+## Reference panels, annotations, LD scores, and demo
 
-Annotation files and LD score files for the baseline-LD-X model annotations
+1000 Genomes Project reference panels, demo code and data for running S-LDXR,
+annotation files and LD score files for the baseline-LD-X model annotations
 and several other annotations can be downloaded
-[here](https://data.broadinstitute.org/alkesgroup/LDSCORE/baseline-LD-X/).
-
+[here](https://data.broadinstitute.org/alkesgroup/S-LDXR/).
 
 ## Contact
 
