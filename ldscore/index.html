@@ -121,7 +121,8 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="estimating-ld-scores">Estimating LD scores</h1>
-<p>This page describes how to estimate LD scores</p>
+<p>This page describes the steps to estimate LD scores from LD reference panels
+using S-LDXR.</p>
 <h2 id="running-s-ldxr-to-estimate-ld-scores">Running S-LDXR to estimate LD scores</h2>
 <p>S-LDXR estimates LD scores with the following command.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">for</span> chrom in <span class="k">$(</span>seq <span class="m">22</span><span class="k">)</span>
@@ -139,8 +140,7 @@
 
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-<b>Note</b>: The above for loop can be parallelized by chromosome, if a
-computer cluster is available.
+<b>Note</b>: The above for loop can be parallelized by chromosome.
 </div>
 
 <p>Here are the meanings of the flags:</p>
