@@ -373,40 +373,47 @@ continuous-valued annotations)</p>
 <p><code>STD</code> standard deviation of the annotation across SNPs</p>
 </li>
 <li>
-<p><code>TAU1</code> heritability coefficient of population 1</p>
+<p><code>TAU1</code> heritability annotation coefficient of population 1</p>
 </li>
 <li>
-<p><code>TAU1_SE</code> standard error heritability coefficient of population 1</p>
+<p><code>TAU1_SE</code> standard error heritability annotation coefficient of population 1</p>
 </li>
 <li>
-<p><code>TAU2</code> heritability coefficient of population 2</p>
+<p><code>TAU2</code> heritability annotation coefficient of population 2</p>
 </li>
 <li>
-<p><code>TAU2_SE</code> standard error heritability coefficient of population 2</p>
+<p><code>TAU2_SE</code> standard error heritability annotation coefficient of population 2</p>
 </li>
 <li>
-<p><code>THETA</code> trans-ethnic genetic covariance coefficient</p>
+<p><code>THETA</code> trans-ethnic genetic covariance annotation coefficient</p>
 </li>
 <li>
-<p><code>THETA_SE</code> standard error of trans-ethnic genetic covariance coefficient</p>
+<p><code>THETA_SE</code> standard error of trans-ethnic genetic covariance annotation coefficient</p>
 </li>
 <li>
-<p><code>HSQ1</code> heritability in population 1</p>
+<p><code>HSQ1</code> stratified heritability in population 1</p>
 </li>
 <li>
-<p><code>HSQ1_SE</code> standard error of heritability in population 1</p>
+<p><code>HSQ1_SE</code> standard error of stratified heritability in population 1</p>
 </li>
 <li>
-<p><code>HSQ2</code> heritability in population 2</p>
+<p><code>HSQ2</code> stratified heritability in population 2</p>
 </li>
 <li>
-<p><code>HSQ2_SE</code> standard error of heritability in population 2</p>
+<p><code>HSQ2_SE</code> standard error of stratified heritability in population 2</p>
 </li>
 <li>
-<p><code>GCOV</code> trans-ethnic genetic covariance</p>
+<p><code>GCOV</code> stratified trans-ethnic genetic covariance</p>
 </li>
 <li>
-<p><code>GCOV_SE</code> standard error of trans-ethnic genetic covariance</p>
+<p><code>GCOV_SE</code> standard error of stratified trans-ethnic genetic covariance</p>
+</li>
+<li>
+<p><code>GCOR</code> stratified trans-ethnic genetic correlation</p>
+</li>
+<li>
+<p><code>GCOR_SE</code> standard error for the estimated stratified trans-ethnic
+genetic correlation</p>
 </li>
 <li>
 <p><code>GCORSQ</code> stratified squared trans-ethnic genetic correlation</p>
@@ -442,6 +449,22 @@ genetic correlation enrichment</p>
 <li>
 <p><code>GCORSQ_ENRICHMENT_SE</code> standard error of estimated enrichment of stratified
 squared trans-ethnic genetic correlation</p>
+</li>
+<li>
+<p><code>GCORSQ_ENRICHMENT_P</code> p-value for testing whether enrichment of stratified
+trans-ethnic genetic correlation is different from 1. Here the p-value
+is obtained from a t distribution with degree of freedom equal to the number
+of jackknife blocks minus one, where the test statistic is
+\( { {\hat{\lambda}^2(C)} \over {s.e.(\hat{\lambda}^2(C)) } }\).</p>
+</li>
+<li>
+<p>GCOVSQ_DIFF</p>
+</li>
+<li>
+<p>GCOVSQ_DIFF_SE</p>
+</li>
+<li>
+<p>GCOVSQ_DIFF_P</p>
 </li>
 </ol></div>
             </div>
