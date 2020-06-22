@@ -116,17 +116,17 @@
 <p>This page describes how to estimate LD scores</p>
 <h3 id="the-command">The command</h3>
 <p>S-LDXR estimates LD scores with the following command.</p>
-<div class="codehilite"><pre><span></span><code>for chrom in $(seq 22)
-do
-    python <span class="nt">&lt;software</span> <span class="err">directory</span><span class="nt">&gt;</span>/s-ldxr.py \
-        --score allelic \
-        --ld-wind-cm 1.0 \
-        --print-snps <span class="nt">&lt;a</span> <span class="err">list</span> <span class="err">of</span> <span class="err">SNPs</span> <span class="err">to</span> <span class="err">print</span><span class="nt">&gt;</span> \
-        --bfile <span class="nt">&lt;EAS</span> <span class="err">reference</span> <span class="err">panel</span> <span class="err">directory</span><span class="nt">&gt;</span>/1000G.EAS.<span class="cp">${</span><span class="n">chrom</span><span class="cp">}</span> \
-                <span class="nt">&lt;EUR</span> <span class="err">reference</span> <span class="err">panel</span> <span class="err">directory</span><span class="nt">&gt;</span>/1000G.EUR.<span class="cp">${</span><span class="n">chrom</span><span class="cp">}</span> \
-        --annot <span class="nt">&lt;annotation</span> <span class="err">directory</span><span class="nt">&gt;</span>/<span class="nt">&lt;annotation</span> <span class="err">file</span><span class="nt">&gt;</span>.<span class="cp">${</span><span class="n">chrom</span><span class="cp">}</span>.annot.gz \
-        --out <span class="nt">&lt;output</span> <span class="err">directory</span><span class="nt">&gt;</span>/<span class="nt">&lt;ld</span> <span class="err">score</span> <span class="err">file</span> <span class="err">prefix</span><span class="nt">&gt;</span>.<span class="cp">${</span><span class="n">chrom</span><span class="cp">}</span>
-done
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> chrom in <span class="k">$(</span>seq <span class="m">22</span><span class="k">)</span>
+<span class="k">do</span>
+    python &lt;software directory&gt;/s-ldxr.py <span class="se">\</span>
+        --score allelic <span class="se">\</span>
+        --ld-wind-cm <span class="m">1</span>.0 <span class="se">\</span>
+        --print-snps &lt;a list of SNPs to print&gt; <span class="se">\</span>
+        --bfile &lt;EAS reference panel directory&gt;/1000G.EAS.<span class="si">${</span><span class="nv">chrom</span><span class="si">}</span> <span class="se">\</span>
+                &lt;EUR reference panel directory&gt;/1000G.EUR.<span class="si">${</span><span class="nv">chrom</span><span class="si">}</span> <span class="se">\</span>
+        --annot &lt;annotation directory&gt;/&lt;annotation file&gt;.<span class="si">${</span><span class="nv">chrom</span><span class="si">}</span>.annot.gz <span class="se">\</span>
+        --out &lt;output directory&gt;/&lt;ld score file prefix&gt;.<span class="si">${</span><span class="nv">chrom</span><span class="si">}</span>
+<span class="k">done</span>
 </code></pre></div>
 
 
