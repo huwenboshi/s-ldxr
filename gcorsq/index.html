@@ -113,11 +113,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#continuous-valued-annotations" class="nav-link">Continuous-valued annotations</a>
+            <li class="nav-item" data-level="2"><a href="#estimating-lambda2c-for-continuous-valued-annotations" class="nav-link">Estimating \( \lambda^2(C) \) for continuous-valued annotations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#expected-lambda2c-of-binary-annotations-from-continuous-valued-annotations" class="nav-link">Expected \(\lambda^2(C)\) of binary annotations from continuous-valued annotations</a>
+            <li class="nav-item" data-level="2"><a href="#expected-lambda2c-from-continuous-valued-annotations" class="nav-link">Expected \(\lambda^2(C)\) from continuous-valued annotations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -235,9 +235,9 @@ coefficients for population 2.</p>
 --save-pseudo-coef flag is specified.
 </div>
 
-<h2 id="continuous-valued-annotations">Continuous-valued annotations</h2>
+<h2 id="estimating-lambda2c-for-continuous-valued-annotations">Estimating \( \lambda^2(C) \) for continuous-valued annotations</h2>
 <p>The following command estimates enrichment of stratified squared trans-ethnic
-genetic correlation of quintiles of continuous-valued annotations.</p>
+genetic correlation for quintiles of continuous-valued annotations.</p>
 <div class="codehilite"><pre><span></span><code><span class="err">python &lt;software directory&gt;/cont_annot_gcor.py \</span>
 <span class="err">    --coef TRAIT_EAS_EUR.txt \</span>
 <span class="err">    --frqfile &lt;EAS MAF directory&gt;/1000G.EAS. \</span>
@@ -296,7 +296,13 @@ of shrinkage.</p>
 <p><code>TRAIT_EAS_EUR_contannot.txt.log</code> is the log file for debugging purpose.</p>
 </li>
 </ul>
-<h2 id="expected-lambda2c-of-binary-annotations-from-continuous-valued-annotations">Expected \(\lambda^2(C)\) of binary annotations from continuous-valued annotations</h2>
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: By default, S-LDXR corrects for bias in ratio estimation
+analytically. We also provide the option to correct for bias using jackknife.
+This can be achieved by adding the --use-jackknife-bias-adj flag.
+</div>
+
+<h2 id="expected-lambda2c-from-continuous-valued-annotations">Expected \(\lambda^2(C)\) from continuous-valued annotations</h2>
 <p>Estimating expected \(r^2_g(C)\) and \(\lambda^2(C)\) from
 continuous-valued annotations requires two steps.</p>
 <p>The first step gets the coefficients (\(\tau_{1C}\), \(\tau_{2C}\),
@@ -322,8 +328,7 @@ and \(\theta_{C}\)) of each continuous-valued annotations</p>
 
 <p>This command typically takes 2 to 5 minutes to run on a stand alone computer.</p>
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-<b>Note</b>: It is important to always include the base (not
-baseline) annotation.
+<b>Note</b>: It is important to include the base (not baseline) annotation.
 </div>
 
 <p>The output is the same as that of a typical command.</p>
@@ -346,8 +351,13 @@ baseline) annotation.
 
 <p>This command typically takes 2 to 5 minutes to run on a stand alone computer.</p>
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-<b>Note</b>: It is important to always include the base (not
-baseline) annotation.
+<b>Note</b>: It is important to include the base (not baseline) annotation.
+</div>
+
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: By default, S-LDXR corrects for bias in ratio estimation
+analytically. We also provide the option to correct for bias using jackknife.
+This can be achieved by adding the --use-jackknife-bias-adj flag.
 </div>
 
 <p>The output is the same as that of the command for continuous-valued
