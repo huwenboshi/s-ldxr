@@ -42,6 +42,9 @@ The following is a list of publicly available reference panels.
 * [1000 Genomes Project](http://www.internationalgenome.org/data/)
 * [UK10K](https://www.uk10k.org/data_access.html)
 
+1000 Genomes Project reference genotype data for East Asian and European
+populations can be downloaded [here](https://data.broadinstitute.org/alkesgroup/S-LDXR/1000G_EAS_EUR.tar.gz).
+
 <div style="background-color:rgba(230, 230, 250, 1.0);">
 <b>Note</b>: S-LDXR requires the centimorgan information of each SNP to
 accurate estimation of LD scores.
@@ -60,6 +63,9 @@ always be:
 The first annotation (usually the base annotation) should start on the 5th
 column.
 
+baseline-LD-X model annotations can be downloaded
+[here](https://data.broadinstitute.org/alkesgroup/S-LDXR/baseline-LD-X.tar.gz).
+
 ## LD score files
 
 LD score files should be in gzipped text format. The first 3 columns should
@@ -77,6 +83,9 @@ on the 4th column.
 has the same format as LD score files.
 </div>
 
+LD scores for the baseline-LD-X model annotations can be downloaded
+[here](https://data.broadinstitute.org/alkesgroup/S-LDXR/baseline-LD-X.tar.gz).
+
 ## Minor allele frequency files
 
 Minor allele frequency files format is the same as that of PLINK. The columns
@@ -88,3 +97,6 @@ are:
 * `A2` Effect allele (encoded as 1 in PLINK bed file).
 * `MAF` Minor allele frequency
 * `NCHROBS` Number of samples times 2.
+
+Minor allele frequency files for the East Asian and European populations can
+be downloaded [here](https://data.broadinstitute.org/alkesgroup/S-LDXR/maf.tar.gz).

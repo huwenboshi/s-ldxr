@@ -5,7 +5,8 @@ site_author: 'Huwenbo Shi'
 site_url: 'https://huwenboshi.github.io/s-ldxr'
 
 # Repository
-repo_url: 'https://github.com/huwenboshi/s-ldxr'
+#repo_url: 'https://github.com/huwenboshi/s-ldxr'
+repo_url: null
 
 # Copyright
 copyright: 'Copyright &copy; 2019 - 2024 Huwenbo Shi'

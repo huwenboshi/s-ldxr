@@ -52,7 +52,7 @@ def create_block(start_idx, stop_idx, nblock):
 
     return blocks
 
-def regression(x, y, nblock, use_intercept):
+def regression(x, y, nblock, fit_intercept):
     """
     Perform least square regression with block jack knife
     """
@@ -64,7 +64,7 @@ def regression(x, y, nblock, use_intercept):
 
     # obtain coefficient
     coef = np.zeros(ncoef, dtype=np.float32)
-    if use_intercept == 'no':
+    if fit_intercept == 'no':
         coef[:-1] = np.linalg.solve(xtx[:-1,:-1], xty[:-1])
     else:
         coef = np.linalg.solve(xtx, xty)
@@ -80,7 +80,7 @@ def regression(x, y, nblock, use_intercept):
         xtx_block = xtx - np.dot(x[block,:].T, x[block,:])
         xty_block = xty - np.dot(x[block,:].T, y[block])
         coef_block = np.zeros(ncoef, dtype=np.float32)
-        if use_intercept == 'no':
+        if fit_intercept == 'no':
             coef_block[:-1]=np.linalg.solve(xtx_block[:-1,:-1],xty_block[:-1])
         else:
             coef_block = np.linalg.solve(xtx_block, xty_block)
@@ -93,7 +93,7 @@ def regression(x, y, nblock, use_intercept):
 
     return coef, se, ps_coef
 
-def robust_regression(x, y, nblock, use_intercept):
+def robust_regression(x, y, nblock, fit_intercept):
     """
     Perform least square regression with block jack knife
     """
@@ -106,7 +106,7 @@ def robust_regression(x, y, nblock, use_intercept):
 
     # obtain coefficient
     coef = np.zeros(ncoef, dtype=np.float32)
-    if use_intercept == 'no':
+    if fit_intercept == 'no':
         model = sm.RLM(y, x[:,:-1], M=sm.robust.norms.TukeyBiweight(c=cval))
         results = model.fit()
         coef[:-1] = results.params
@@ -129,7 +129,7 @@ def robust_regression(x, y, nblock, use_intercept):
         y_block = y[use_idx]
         coef_block = np.zeros(ncoef, dtype=np.float32)
         
-        if use_intercept == 'no':
+        if fit_intercept == 'no':
             model = sm.RLM(y_block, x_block[:,:-1],
                 M=sm.robust.norms.TukeyBiweight(c=cval))
             results = model.fit()
@@ -150,7 +150,7 @@ def robust_regression(x, y, nblock, use_intercept):
     return coef, se, ps_coef
 
 def get_coef(score, zsc1, zsc2, w, nblock,
-    use_intercept, use_robust_regression, subtract):
+    fit_intercept, use_robust_regression, subtract):
     """
     Obtain coefficient for heritability / genetic covariance
     """
@@ -159,7 +159,7 @@ def get_coef(score, zsc1, zsc2, w, nblock,
     nsnp = score.shape[0]
     nprod = np.sqrt((zsc1['N'].values)*(zsc2['N'].values))
     zprod = (zsc1['Z'].values)*(zsc2['Z'].values)
-    if use_intercept == 'no':
+    if fit_intercept == 'no':
         zprod -= subtract
     score[:,:-1] = score[:,:-1] * nprod[:,np.newaxis]
     
@@ -174,18 +174,18 @@ def get_coef(score, zsc1, zsc2, w, nblock,
     # run regression with jackknife
     if nblock == 0:
         if use_robust_regression == False:
-            coef = regression(score_w, zprod_w, 0, use_intercept)
+            coef = regression(score_w, zprod_w, 0, fit_intercept)
         else:
-            coef = robust_regression(score, zprod, 0, use_intercept)
+            coef = robust_regression(score, zprod, 0, fit_intercept)
         coef[:-1] /= nbar
         return coef
     
     if use_robust_regression == False:
         coef, coef_se, ps_coef = regression(score_w, zprod_w,
-            nblock, use_intercept)
+            nblock, fit_intercept)
     else:
         coef, coef_se, ps_coef = robust_regression(score, zprod,
-            nblock, use_intercept)
+            nblock, fit_intercept)
         
     # rescale the coefficient
     coef[:-1] /= nbar
@@ -612,9 +612,9 @@ def load_frqfile(frqfile_fnm, start_chrom, stop_chrom):
     return all_frq
 
 def estimate_gcor(sumstats_fnm, score_fnm, weight_fnm, annot_fnm,
-    frqfile_fnm, out_fnm, add_intercept, save_ps_coef, use_chrom,
-    use_robust_regression, nblk_jk, min_maf, bound, apply_shrinkage,
-    use_jk_adj):
+    frqfile_fnm, out_fnm, fit_intercept, use_intercept, save_ps_coef,
+    use_chrom, use_robust_regression, nblk_jk, min_maf, bound,
+    apply_shrinkage, use_jk_adj):
    
     """
     Estimate coefficients, enrichments, and squared genetic correlations
@@ -700,17 +700,17 @@ def estimate_gcor(sumstats_fnm, score_fnm, weight_fnm, annot_fnm,
         pred1, pred2, predx)
     
     # subtraction when intercept is constrained
-    subtract1 = np.ones(nregsnp, dtype=np.float32)
-    subtract2 = np.ones(nregsnp, dtype=np.float32)
-    subtractx = np.zeros(nregsnp, dtype=np.float32)
+    subtract1 = np.ones(nregsnp, dtype=np.float32)*use_intercept[0]
+    subtract2 = np.ones(nregsnp, dtype=np.float32)*use_intercept[1]
+    subtractx = np.ones(nregsnp, dtype=np.float32)*use_intercept[2]
 
     # get regression coefficients
     tau1, tau1_se, ps_tau1 = get_coef(ldscore1, sumstats1, sumstats1,
-       weight1_, nblk_jk, add_intercept[0], use_robust_regression, subtract1)
+       weight1_, nblk_jk, fit_intercept[0], use_robust_regression, subtract1)
     tau2, tau2_se, ps_tau2 = get_coef(ldscore2, sumstats2, sumstats2,
-        weight2_, nblk_jk, add_intercept[1], use_robust_regression, subtract2)
+        weight2_, nblk_jk, fit_intercept[1], use_robust_regression, subtract2)
     theta,theta_se,ps_theta = get_coef(ldscorex, sumstats1, sumstats2,
-        weightx_, nblk_jk, add_intercept[2], use_robust_regression, subtractx)
+        weightx_, nblk_jk, fit_intercept[2], use_robust_regression, subtractx)
 
     logging.info('Obtained coefficients')
 
@@ -787,10 +787,19 @@ def estimate_gcor(sumstats_fnm, score_fnm, weight_fnm, annot_fnm,
 
     # print out other related information
     logging.info('hsq1: {} {}'.format(hsq1[0], hsq1_se[0]))
-    logging.info('intercept hsq1: {} {}'.format(tau1[-1], tau1_se[-1]))
+    if fit_intercept[0] == 'yes':
+        logging.info('intercept hsq1: {} {}'.format(tau1[-1], tau1_se[-1]))
+    else:
+        logging.info('intercept hsq1: {} {}'.format(use_intercept[0], 0.0))
     logging.info('hsq2: {} {}'.format(hsq2[0], hsq2_se[0]))
-    logging.info('intercept hsq2: {} {}'.format(tau2[-1], tau2_se[-1]))
+    if fit_intercept[1] == 'yes':
+        logging.info('intercept hsq2: {} {}'.format(tau2[-1], tau2_se[-1]))
+    else:
+        logging.info('intercept hsq2: {} {}'.format(use_intercept[1], 0.0))
     logging.info('gcov: {} {}'.format(gcov[0], gcov_se[0]))
-    logging.info('intercept gcov: {} {}'.format(theta[-1], theta_se[-1]))
+    if fit_intercept[2] == 'yes':
+        logging.info('intercept gcov: {} {}'.format(theta[-1], theta_se[-1]))
+    else:
+        logging.info('intercept gcov: {} {}'.format(use_intercept[2], 0.0))
     logging.info('gcor: {} {}'.format(gcor[0], gcor_se[0]))
     logging.info('gcorsq: {} {}'.format(gcorsq[0], gcorsq_se[0]))

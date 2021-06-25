@@ -26,9 +26,10 @@ def main():
         
         estimate_gcor(argmap['gcor'], argmap['ref-ld-chr'], argmap['w-ld-chr'],
             argmap['annot'], argmap['frqfile'], argmap['out'],
-            argmap['add-intercept'], argmap['save-pseudo-coef'],
-            argmap['use-chrom'], argmap['use-robust-regression'],
-            argmap['n-blocks'], argmap['min-maf'], argmap['bound'],
+            argmap['fit-intercept'], argmap['use-intercept'],
+            argmap['save-pseudo-coef'], argmap['use-chrom'],
+            argmap['use-robust-regression'], argmap['n-blocks'],
+            argmap['min-maf'], argmap['bound'],
             argmap['apply-shrinkage'], argmap['use-jackknife-bias-adj'])
 
     else:
@@ -61,7 +62,8 @@ def check_command_line(args):
        argmap['ref-ld-chr'] != None and
        argmap['frqfile'] != None and argmap['annot'] and
        argmap['save-pseudo-coef'] != None and
-       argmap['add-intercept'] != None and argmap['w-ld-chr'] != None and
+       argmap['fit-intercept'] != None and argmap['use-intercept'] != None and
+       argmap['w-ld-chr'] != None and
        argmap['use-chrom'] != None and argmap['n-blocks'] != None and
        argmap['use-robust-regression'] !=None and argmap['min-maf'] != None
        and argmap['bound'] != None and argmap['apply-shrinkage'] != None):
@@ -146,9 +148,13 @@ def get_command_line():
     parser.add_argument('--w-ld-chr', dest='w-ld-chr', type=str,
         required=False, nargs='+', help='Prefix for the weight files')
 
-    parser.add_argument('--add-intercept', dest='add-intercept', type=str,
+    parser.add_argument('--fit-intercept', dest='fit-intercept', type=str,
         required=False, default=['yes','yes','no'], nargs=3,
-        help='Specific whether to use intercept in regression')
+        help='Specify whether to use intercept in regression')
+
+    parser.add_argument('--use-intercept', dest='use-intercept', type=float,
+        required=False, default=[1.0, 1.0, 0.0], nargs=3,
+        help='Specify the intercept term to be fixed')
 
     parser.add_argument('--use-chrom', dest='use-chrom', type=int,
         required=False, default=[1, 22], nargs=2,

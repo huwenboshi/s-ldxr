@@ -19,7 +19,7 @@ The software was developed and tested with the following packages.
 ## Reference panels, annotations, LD scores, and demo
 
 1000 Genomes Project reference panels, demo code and data for running S-LDXR,
-annotation files and LD score files for the baseline-LD-X model annotations
+annotation files and LD score files for the baseline-LD-X model annotations,
 and several other annotations can be downloaded
 [here](https://data.broadinstitute.org/alkesgroup/S-LDXR/).
 

@@ -1,12 +1,14 @@
-# Estimating stratified squared trans-ethnic genetic correlation and its enrichment
+# Estimating enrichment of stratified squared trans-ethnic genetic correlation
 
-This page describes how to estimate stratified squared trans-ethnic genetic
-correlation, \\(r^2_{g}(C)\\), and its enrichment, \\(\lambda^2(C)\\).
+This page describes the steps to estimate enrichment of stratified squared
+trans-ethnic genetic correlation,
+\\(\lambda^2(C) ={ {r^2_g(C)} \over {r^2_g} }\\), the ratio between squared
+trans-ethnic genetic correlation of annotation \\( C \\) and genome-wide
+squared trans-ethnic genetic correlation.
 
-### Typical command
+## Typical command
 
-S-LDXR estimates \\(r^2_{g}(C)\\) and \\(\lambda^2(C)\\) with the
-following command.
+S-LDXR estimates \\(\lambda^2(C)\\) with the following command.
 
 ```
 python <software directory>/s-ldxr.py \
@@ -60,7 +62,13 @@ the coefficients will be saved. This flag is optional.
 
 * `--out` specifies the output file name.
 
-### Output
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: By default, S-LDXR corrects for bias in ratio estimation
+analytically. We also provide the option to correct for bias using jackknife.
+This can be achieved by adding the --use-jackknife-bias-adj flag.
+</div>
+
+## Output
 
 After executing the above command, 5 files will be generated.
 
@@ -82,10 +90,10 @@ coefficients for population 2.
 --save-pseudo-coef flag is specified.
 </div>
 
-### Continuous-valued annotations
+## Estimating \\( \lambda^2(C) \\) for continuous-valued annotations
 
 The following command estimates enrichment of stratified squared trans-ethnic
-genetic correlation of quintiles of continuous-valued annotations.
+genetic correlation for quintiles of continuous-valued annotations.
 
 ```
 python <software directory>/cont_annot_gcor.py \
@@ -135,7 +143,13 @@ After executing the above command, 2 files will be created.
 
 * `TRAIT_EAS_EUR_contannot.txt.log` is the log file for debugging purpose.
 
-### Expected \\(r^2_g(C)\\) and \\(\lambda^2(C)\\) from continuous-valued annotations
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: By default, S-LDXR corrects for bias in ratio estimation
+analytically. We also provide the option to correct for bias using jackknife.
+This can be achieved by adding the --use-jackknife-bias-adj flag.
+</div>
+
+## Expected \\(\lambda^2(C)\\) from continuous-valued annotations
 
 Estimating expected \\(r^2_g(C)\\) and \\(\lambda^2(C)\\) from
 continuous-valued annotations requires two steps.
@@ -165,8 +179,7 @@ python <software directory>/s-ldxr.py \
 This command typically takes 2 to 5 minutes to run on a stand alone computer.
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-<b>Note</b>: It is important to always include the base (not
-baseline) annotation.
+<b>Note</b>: It is important to include the base (not baseline) annotation.
 </div>
 
 The output is the same as that of a typical command.
@@ -192,14 +205,16 @@ python <software directory>/pred_binannot_from_contannot.py \
 This command typically takes 2 to 5 minutes to run on a stand alone computer.
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-<b>Note</b>: It is important to always include the base (not
-baseline) annotation.
+<b>Note</b>: It is important to include the base (not baseline) annotation.
+By default, S-LDXR corrects for bias in ratio estimation
+analytically. We also provide the option to correct for bias using jackknife.
+This can be achieved by adding the --use-jackknife-bias-adj flag.
 </div>
 
 The output is the same as that of the command for continuous-valued
 annotations.
 
-### Interpreting the output
+## Interpreting the output
 
 The output files of S-LDXR contain the following columns.
 
@@ -209,51 +224,85 @@ The output files of S-LDXR contain the following columns.
 continuous-valued annotations)
 3. `STD` standard deviation of the annotation across SNPs
 
-4. `TAU1` heritability coefficient of population 1
+4. `TAU1` heritability annotation coefficient of population 1
 
-5. `TAU1_SE` standard error heritability coefficient of population 1
+5. `TAU1_SE` standard error heritability annotation coefficient of population 1
 
-6. `TAU2` heritability coefficient of population 2
+6. `TAU2` heritability annotation coefficient of population 2
 
-7. `TAU2_SE` standard error heritability coefficient of population 2
+7. `TAU2_SE` standard error heritability annotation coefficient of population 2
 
-8. `THETA` trans-ethnic genetic covariance coefficient
+8. `THETA` trans-ethnic genetic covariance annotation coefficient
 
-9. `THETA_SE` standard error of trans-ethnic genetic covariance coefficient
+9. `THETA_SE` standard error of trans-ethnic genetic covariance annotation coefficient
 
-10. `HSQ1` heritability in population 1
+10. `HSQ1` stratified heritability in population 1
 
-11. `HSQ1_SE` standard error of heritability in population 1
+11. `HSQ1_SE` standard error of stratified heritability in population 1
 
-12. `HSQ2` heritability in population 2
+12. `HSQ2` stratified heritability in population 2
 
-13. `HSQ2_SE` standard error of heritability in population 2
+13. `HSQ2_SE` standard error of stratified heritability in population 2
 
-14. `GCOV` trans-ethnic genetic covariance
+14. `GCOV` stratified trans-ethnic genetic covariance
 
-15. `GCOV_SE` standard error of trans-ethnic genetic covariance
+15. `GCOV_SE` standard error of stratified trans-ethnic genetic covariance
 
-16. `GCORSQ` stratified squared trans-ethnic genetic correlation
+16. `GCOR` stratified trans-ethnic genetic correlation
 
-17. `GCORSQ_SE` standard error of stratified squared trans-ethnic genetic
+17. `GCOR_SE` standard error for the estimated stratified trans-ethnic
+genetic correlation
+
+18. `GCORSQ` stratified squared trans-ethnic genetic correlation
+
+19. `GCORSQ_SE` standard error of stratified squared trans-ethnic genetic
 correlation 
 
-18. `HSQ1_ENRICHMENT` heritability enrichment in population 1
+20. `HSQ1_ENRICHMENT` heritability enrichment in population 1
 
-19. `HSQ1_ENRICHMENT_SE` standard error of heritability enrichment in
+21. `HSQ1_ENRICHMENT_SE` standard error of heritability enrichment in
 population 1
 
-20. `HSQ2_ENRICHMENT` heritability enrichment in population 2
+22. `HSQ2_ENRICHMENT` heritability enrichment in population 2
 
-21. `HSQ2_ENRICHMENT_SE` standard error of heritability enrichment in
+23. `HSQ2_ENRICHMENT_SE` standard error of heritability enrichment in
 population 2
 
-22. `GCOV_ENRICHMENT` genetic covariance enrichment
+24. `GCOV_ENRICHMENT` genetic covariance enrichment
 
-23. `GCOV_ENRICHMENT_SE` standard error of genetic covariance enrichment
+25. `GCOV_ENRICHMENT_SE` standard error of genetic covariance enrichment
 
-24. `GCORSQ_ENRICHMENT` estimated enrichment of stratified squared trans-ethnic
+26. `GCORSQ_ENRICHMENT` estimated enrichment of stratified squared trans-ethnic
 genetic correlation enrichment
 
-25. `GCORSQ_ENRICHMENT_SE` standard error of estimated enrichment of stratified
+27. `GCORSQ_ENRICHMENT_SE` standard error of estimated enrichment of stratified
 squared trans-ethnic genetic correlation
+
+28. `GCORSQ_ENRICHMENT_P` p-value for testing whether enrichment of stratified
+trans-ethnic genetic correlation is different from 1. Here the p-value
+is obtained from a t distribution with degree of freedom equal to the number
+of jackknife blocks minus one, where the test statistic is
+\\( { {\hat{\lambda}^2(C)} \over {s.e.(\hat{\lambda}^2(C)) } }\\).
+
+29. `GCOVSQ_DIFF` estimated
+\\( \hat{D}^2(C) = \hat{\rho}^2_g(C) - \hat{r}^2_g \hat{h}^2_g(C) \hat{h}^2_g(C) \\),
+the difference between stratified squared trans-ethnic genetic covariance
+of annotation \\( C \\), and \\( \hat{r}^2_g \hat{h}^2_g(C) \hat{h}^2_g(C) \\),
+the expected squared trans-ethnic genetic covariance based on genome-wide
+squared trans-ethnic genetic correlation and heritabilities.
+
+30. `GCOVSQ_DIFF_SE` standard error for the estimated \\( \hat{D}^2(C) \\)
+
+31. `GCOVSQ_DIFF_P` p-value for testing whether \\( \hat{D}^2(C) \\) is different
+from 0, obtained from a t distribution with degree of freedom equal to the number
+of jackknife blocks minus one, where the test statistic is
+\\( { {\hat{D}^2(C)} \over {s.e.(\hat{D}^2(C)) } }\\). This test is equivalent
+to testing whether \\( \lambda^2(C) \\) is different from 1. But the p-value
+is better calibrated.
+
+<div style="background-color:rgba(230, 230, 250, 1.0);">
+<b>Note</b>: We recommend to use the column GCORSQ_ENRICHMENT and
+GCORSQ_ENRICHMENT_SE for meta-analysis of results across traits, and use
+GCOVSQ_DIFF_P to test for enrichment/depletion.
+</div>
+

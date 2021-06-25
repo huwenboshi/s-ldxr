@@ -1,12 +1,13 @@
 # Estimating LD scores
 
-This page describes how to estimate LD scores
+This page describes the steps to estimate LD scores from LD reference panels
+using S-LDXR.
 
-### The command
+## Running S-LDXR to estimate LD scores
 
 S-LDXR estimates LD scores with the following command.
 
-```shell
+```sh
 for chrom in $(seq 22)
 do
     python <software directory>/s-ldxr.py \
@@ -21,8 +22,7 @@ done
 ```
 
 <div style="background-color:rgba(230, 230, 250, 1.0);">
-<b>Note</b>: The above for loop can be parallelized by chromosome, if a
-computer cluster is available.
+<b>Note</b>: The above for loop can be parallelized by chromosome.
 </div>
 
 Here are the meanings of the flags:
@@ -49,9 +49,9 @@ format, and have the same set of SNPs.
 
 * `--out` specifies prefix of the output files.
 
-### The output
+## Output of S-LDXR
 
-After executing the command above, 4 files will be created for each
+After executing the command above, S-LDXR creates 4 files for each
 chromosome (i.e. 88 files for all 22 chromosomes):
 
 * `<ld score file prefix>.<chrom>_pop1.gz` - LD score files for the 1st
