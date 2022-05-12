@@ -15,10 +15,10 @@ def load_annot_chrom(filename_list, annot_start_idx=4, snp_idx=2):
     # count number of annotations
     all_annot = []
     annot_list = []
-    for i in xrange(len(filename_list)):
+    for i in range(len(filename_list)):
         filename = filename_list[i]
         with gzip.open(filename, 'r') as f:
-            line = f.readline().strip()
+            line = f.readline().strip().decode("utf-8")
             cols = line.split()[annot_start_idx:]
             all_annot += cols
             annot_list.append(cols)
@@ -27,7 +27,7 @@ def load_annot_chrom(filename_list, annot_start_idx=4, snp_idx=2):
     # load the annot into memory
     all_annot_mat = np.zeros((tot_nsnp, tot_nannot), dtype=np.float32)
     idx_c = 0
-    for i in xrange(len(filename_list)):
+    for i in range(len(filename_list)):
         filename = filename_list[i]
         tmp = annot_list[i]
         dt_load = dict(zip(tmp, [np.float32]*len(tmp)))
@@ -50,7 +50,7 @@ def load_annot(prefix_list, start_chrom, end_chrom,
 
     # load all snps snps
     all_snp = []
-    for i in xrange(start_chrom, end_chrom+1):
+    for i in range(start_chrom, end_chrom+1):
         prefix = prefix_list[0]
         filename = '{}{}.annot.gz'.format(prefix, i)
         tbl = pd.read_table(filename, delim_whitespace=True, engine='c',
@@ -62,11 +62,11 @@ def load_annot(prefix_list, start_chrom, end_chrom,
     # get annotations
     all_annot = []
     annot_list = []
-    for i in xrange(len(prefix_list)):
+    for i in range(len(prefix_list)):
         prefix = prefix_list[i]
         filename = '{}{}.annot.gz'.format(prefix, start_chrom)
         with gzip.open(filename) as f:
-            line = f.readline().strip()
+            line = f.readline().strip().decode("utf-8")
             tmp = line.split()[annot_start_idx:]
             all_annot += tmp
             annot_list.append(tmp)
@@ -75,10 +75,10 @@ def load_annot(prefix_list, start_chrom, end_chrom,
     # load the annot into memory
     all_annot_mat = np.zeros((tot_nsnp, tot_nannot), dtype=np.float32)
     idx_c = 0
-    for k in xrange(len(prefix_list)):
+    for k in range(len(prefix_list)):
         prefix = prefix_list[k]
         idx_r = 0
-        for i in xrange(start_chrom, end_chrom+1):
+        for i in range(start_chrom, end_chrom+1):
             filename = '{}{}.annot.gz'.format(prefix, i)
             tmp = annot_list[k]
             dt_load = dict(zip(tmp, [np.float32]*len(tmp)))

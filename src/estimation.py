@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 import scipy, scipy.linalg
 import statsmodels.api as sm
-from sumstats import *
-from score import *
-from annot import *
+from .sumstats import *
+from .score import *
+from .annot import *
 
 def intersect_snp_regression(snp1, snp2, score_snps, regsnps, frqsnps):
     """
@@ -75,7 +75,7 @@ def regression(x, y, nblock, fit_intercept):
     # get jacknife estimate
     all_blocks = create_block(0, x.shape[0]-1, nblock)
     ps_coef = np.zeros((len(all_blocks), x.shape[1]), dtype=np.float32)
-    for i in xrange(len(all_blocks)):
+    for i in range(len(all_blocks)):
         block = all_blocks[i]
         xtx_block = xtx - np.dot(x[block,:].T, x[block,:])
         xty_block = xty - np.dot(x[block,:].T, y[block])
@@ -122,7 +122,7 @@ def robust_regression(x, y, nblock, fit_intercept):
     all_blocks = create_block(0, x.shape[0]-1, nblock)
     all_idx = np.arange(0, x.shape[0])
     ps_coef = np.zeros((len(all_blocks), x.shape[1]), dtype=np.float32)
-    for i in xrange(len(all_blocks)):
+    for i in range(len(all_blocks)):
         block = all_blocks[i]
         use_idx = np.delete(all_idx, block)
         x_block = x[use_idx,:]
@@ -341,7 +341,7 @@ def get_gcorsq_enrichment(gcorsq, gcorsq_se, ps_gcorsq, use_jk_adj):
     # get jackknife pseudo estimates
     all_ps_gcorsq_en = np.zeros((nblock, nannot), dtype=np.float64)
     factor = np.float64(nblock)/(np.float64(nblock)-1.0)
-    for i in xrange(nblock):
+    for i in range(nblock):
         annot_est = ps_gcorsq[i,:]/ps_gcorsq[i,0]
        
         # adjust for bias if using analytical bias correction
@@ -404,7 +404,7 @@ def shrink_sum(prior, prior_var, ps_prior, m_prior,
 
     shrunk = (factor*post/m_post + (1-factor)*prior/m_prior) * m_post
     ps_shrunk = np.zeros((nblock, nparam))
-    for i in xrange(nblock):
+    for i in range(nblock):
         ps_shrunk[i,:] = \
           (factor*ps_post[i,:]/m_post+(1-factor)*ps_prior[i]/m_prior)*m_post
 
@@ -601,7 +601,7 @@ def update_weights(w1, w2, wx, pred1, pred2, predx):
 def load_frqfile(frqfile_fnm, start_chrom, stop_chrom):
     
     all_frq = []
-    for i in xrange(start_chrom, stop_chrom+1):
+    for i in range(start_chrom, stop_chrom+1):
         all_frq.append(pd.read_table('{}{}.frq'.format(frqfile_fnm,i),
             delim_whitespace=True))
     

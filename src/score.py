@@ -1,7 +1,7 @@
 import logging, gzip, sys
 import numpy as np
 import pandas as pd
-from annot import *
+from .annot import *
 from pysnptools.snpreader import Bed
 
 maf_thres = 0.001
@@ -208,7 +208,7 @@ def calc_scores(score_type, legend, bfile1, bfile2, annot, win, annot_names):
         ldsc1_mat = ldsc1[start_idx:stop_idx,:]
         ldsc2_mat = ldsc2[start_idx:stop_idx,:]
         ldscx_mat = ldscx[start_idx:stop_idx,:]
-        for i in xrange(nsnp):
+        for i in range(nsnp):
             cm = snp_cm[i]
             tmp_idx = np.where((load_cm>=(cm-win)) & (load_cm<=(cm+win)))[0]
             tmp_mat = annot_load[tmp_idx,:]
@@ -234,18 +234,20 @@ def write_score(all_annot, score_mat, legend, printsnps, out_fnm):
     # write header
     header_fields = ['CHR', 'SNP', 'BP'] + all_annot['ANNOT'].values.tolist()
     header = '\t'.join(header_fields)
-    out_f.write(header + '\n')
+    header += '\n'
+    out_f.write(header.encode())
 
     all_chr = legend['CHR'].values
     all_snp = legend['SNP'].values
     all_bp = legend['BP'].values
     nsnp = legend.shape[0]
-    for i in xrange(nsnp):
+    for i in range(nsnp):
         if all_snp[i] not in printsnps:
             continue
         line = '{}\t{}\t{}\t'.format(all_chr[i], all_snp[i], all_bp[i])
         line += '\t'.join([str(c) for c in score_mat[i,:].tolist()])
-        out_f.write(line + '\n')
+        line += '\n'
+        out_f.write(line.encode())
 
     out_f.close()
 
@@ -286,7 +288,7 @@ def load_score(prefix_list, suffix, start_chrom, end_chrom,
 
     # get snps
     all_snp = []
-    for i in xrange(start_chrom, end_chrom+1):
+    for i in range(start_chrom, end_chrom+1):
         prefix = prefix_list[0]
         filename = '{}{}_{}.gz'.format(prefix, i, suffix)
         tbl = pd.read_table(filename, delim_whitespace=True, engine='c',
@@ -298,11 +300,11 @@ def load_score(prefix_list, suffix, start_chrom, end_chrom,
     # get annotations
     all_annot = []
     annot_list = []
-    for i in xrange(len(prefix_list)):
+    for i in range(len(prefix_list)):
         prefix = prefix_list[i]
         filename = '{}{}_{}.gz'.format(prefix, start_chrom, suffix)
         with gzip.open(filename, 'r') as f:
-            line = f.readline().strip()
+            line = f.readline().strip().decode("utf-8")
             tmp = line.split()[annot_start_idx:]
             all_annot += tmp
             annot_list.append(tmp)
@@ -312,10 +314,10 @@ def load_score(prefix_list, suffix, start_chrom, end_chrom,
     all_score = np.zeros((tot_nsnp, tot_nannot+1), dtype=np.float32)
     all_score[:,-1] = np.float32(1.0)
     idx_c = 0
-    for k in xrange(len(prefix_list)):
+    for k in range(len(prefix_list)):
         prefix = prefix_list[k]
         idx_r = 0
-        for i in xrange(start_chrom, end_chrom+1):
+        for i in range(start_chrom, end_chrom+1):
             filename = '{}{}_{}.gz'.format(prefix, i, suffix)
             tmp = annot_list[k]
             dt_load = dict(zip(tmp, [np.float32]*len(tmp)))
